@@ -10,7 +10,7 @@ using DG.Tweening;
 
 public class GnomeMovement : MonoBehaviour
 {
-
+    [Header("Animation Variables")]
     //ANIMATION VARIABLES:
     public Animator player1Animator;
 
@@ -25,14 +25,11 @@ public class GnomeMovement : MonoBehaviour
     public bool isDancing;
     public bool isJumping;
 
-    public bool hardFall1;
-    public bool hardFall2;
-    public bool floatingUp;
-    public bool noseDiving;
-
+    [Header("Input")]
     //INPUT:
     public SGInput player1Controls;
 
+    [Header("Basic Variables")]
     //BASIC VARIABLES:
 
     [SerializeField] GameObject player1GO;
@@ -41,8 +38,8 @@ public class GnomeMovement : MonoBehaviour
     public float defaultGravity = -9.81f;
     public float gravity = -9.81f;
     [SerializeField] float velocityThreshhold = -10f;
-    [SerializeField] float scaledGravity;
-    [SerializeField] float gravityModifier;
+
+    [Header("Movement Variables")]
 
     //MOVEMENT VARIABLES:
 
@@ -60,7 +57,7 @@ public class GnomeMovement : MonoBehaviour
     [SerializeField] float fallSpeed;
     [SerializeField] Vector3 jumpHeight;
 
-    public bool jumpingAllowed;
+    [Header("Cameras")]
 
     //CAMERA:
     public Cinemachine.CinemachineVirtualCamera vCam1;
@@ -108,19 +105,14 @@ public class GnomeMovement : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        cineBrain = GetComponent<Cinemachine.CinemachineBrain>();
-        vCam1 = GetComponent<Cinemachine.CinemachineVirtualCamera>();
-        vCam2 = GetComponent<Cinemachine.CinemachineVirtualCamera>(); //Getting same camera twice?
-    }
-    void HandleMovement()
+  
+    void HandleMovement() //Move transform based on Move Vector.
     {
         Vector3 m = playerSpeed * Time.deltaTime * new Vector3(move.x, move.z, move.y).normalized;
         transform.Translate(m, Space.Self);
     }
 
-    void HandleRotation()
+    void HandleRotation() //Look at current Position + Look Vector.
     {
         Vector3 currentPosition = transform.position;
         Vector3 newPosition = new Vector3(look.x, look.z, look.y).normalized * Time.deltaTime;
@@ -128,7 +120,7 @@ public class GnomeMovement : MonoBehaviour
 
         transform.LookAt(lookAtPosition);
     }
-    public void ResetStates()
+    public void ResetStates()  //Used to turn off all animations.
     {
         StopIdle();
         StopWalk();
@@ -136,8 +128,6 @@ public class GnomeMovement : MonoBehaviour
         StopJumping();
         CancelRun();
         StopDancing();
-
-       
     }
 
     // ANIMATION STATES:
@@ -207,67 +197,44 @@ public class GnomeMovement : MonoBehaviour
 
         player1Animator.SetBool("isJumping", true);
 
-        Debug.Log("PlayerObject Rigidbody Velocity at JUMP: " + playerRB.velocity);
+        Debug.Log("Player Rigidbody Velocity at JUMP: " + playerRB.velocity);
 
+        transform.Translate(jumpHeight.y * jumpSpeed * Time.deltaTime * Vector3.up); //Move player transform up when Jump called.
 
     }
     void StopJumping()
     {
         player1Animator.SetBool("isJumping", false);
         isJumping = false;
+
+        
     }
     private void FixedUpdate()
     {
         // SET VELOCITY TO 0 IF NO PLAYER INPUT
+        
         if (!player1Controls.Player.Move.inProgress && !player1Controls.Player.Jump.inProgress && !player1Controls.Player.FirePlatform.inProgress
-             && !player1Controls.Player.Run.inProgress && !player1Controls.Player.Dance.inProgress) { playerRB.velocity.Set(0, 0, 0); }
+             && !player1Controls.Player.Run.inProgress && !player1Controls.Player.Dance.inProgress) { playerRB.velocity.Set(0, 0, 0); playerRB.useGravity = false; }
+
+        //Add downforce to RB when player Y velocity is above threshold.
+
+        if (playerRB.velocity.y >= velocityThreshhold)
+
+        {
+            playerRB.AddForce(fallSpeed * Time.deltaTime * Vector3.down);
+        }
+
+        //Move transform down when in falling state.
 
         if (isFallingIdle)
         {
-
-        //    if (!isJumping && (!isDancing || !isSprinting || !isWalking) && m_floorCollider.isStanding)
-        //    {
-        //        isIdle = true;
-        //        Idle();
-        //        Debug.Log("Idle.");
-
-        //        isWalking = false;
-        //        isFallingIdle = false;
-        //        isJumping = false;
-        //        isSprinting = false;
-        //        isDancing = false;
-        //    }
-
-        //    else if (m_floorCollider.isStanding)
-        //    {
-        //        if (isFallingIdle) { StopFallingIdle(); }
-        //        if (isJumping) { StopJumping(); }
-        //        Idle();
-        //        gravity = defaultGravity;
-        //        Debug.Log("Started Idling...");
-        //    }
-
-        //}
-        //if (!isJumping && !m_floorCollider.isStanding && !isWalking && !isDancing && !isSprinting)
-        //{
-        //    isFallingIdle = true;
-        //    FallingIdle();
-            transform.Translate(fallSpeed * gravity * Time.deltaTime * Vector3.down.normalized);
-        //    Debug.Log("Started Falling Idle.");
-
-        //    isIdle = false;
-        //    isWalking = false;
-        //    isJumping = false;
-        //    isSprinting = false;
-        //    isDancing = false;
-        //
+            transform.Translate(fallSpeed * gravity * Time.deltaTime * Vector3.down);
         }
 
         else if (isWalking) { Walk(); }
         else if (isSprinting) { Run(); }
-        else if (isJumping ) { Jump(); }
+        else if (isJumping ) { Jump(); } 
         else if (isDancing) { Dance(); }
-
     }
 
     //UPDATE
@@ -275,7 +242,6 @@ public class GnomeMovement : MonoBehaviour
     {
         HandleMovement();
         HandleRotation();
-
 
         if (m_floorCollider.isStanding) //IF FLOOR COLLIDER OBJECT IS COLLIDING WITH OBJECT TAGGED "Floor"...
         {
