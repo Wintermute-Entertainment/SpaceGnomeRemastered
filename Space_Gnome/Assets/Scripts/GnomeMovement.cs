@@ -33,7 +33,7 @@ public class GnomeMovement : MonoBehaviour
     //BASIC VARIABLES:
 
     [SerializeField] GameObject player1GO;
-    [SerializeField] Rigidbody playerRB;
+    public Rigidbody playerRB;
 
     public float defaultGravity = -9.81f;
     public float gravity = -9.81f;
@@ -214,7 +214,7 @@ public class GnomeMovement : MonoBehaviour
         // SET VELOCITY TO 0 IF NO PLAYER INPUT
         
         if (!player1Controls.Player.Move.inProgress && !player1Controls.Player.Jump.inProgress && !player1Controls.Player.FirePlatform.inProgress
-             && !player1Controls.Player.Run.inProgress && !player1Controls.Player.Dance.inProgress) { playerRB.velocity.Set(0, 0, 0); playerRB.useGravity = false; }
+             && !player1Controls.Player.Run.inProgress && !player1Controls.Player.Dance.inProgress && !player1Controls.Player.Move.inProgress ) { playerRB.velocity.Set(0, 0, 0); playerRB.useGravity = false; }
 
         //Add downforce to RB when player Y velocity is above threshold.
 

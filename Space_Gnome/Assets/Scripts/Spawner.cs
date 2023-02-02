@@ -21,7 +21,6 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] bool isColliding;
     [SerializeField] bool spawningAllowed;
-    private bool isSpawned;
 
     [Header("Number of Objects Instantiated")]
     public int objectCount;                 //Current number of objects that have been instantiated.
@@ -45,7 +44,7 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        isSpawned = false;
+       
         spawningAllowed = true;
     }
     private void Update()
@@ -76,8 +75,8 @@ public class Spawner : MonoBehaviour
         //for (i = 0; i >= 0; i++) ;
         //Instantiate(spawnedCoins[i],spawnedObjectParentTransform,true);
 
-        if (spawnedObject != null) { if (spawnedObject.activeInHierarchy) { isSpawned = true; Debug.Log("Instantaited Object: " + spawnedObject.name); } }
-        else { isSpawned = false; }
+        if (spawnedObject != null) { if (spawnedObject.activeInHierarchy) {Debug.Log("Instantaited Object: " + spawnedObject.name); } }
+       // else { isSpawned = false; }
 
         isColliding = false;
 
@@ -103,7 +102,7 @@ public class Spawner : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             int i;
-            Destroy(launchplatform);
+            if (launchplatform != null) { Destroy(launchplatform); }
 
             isColliding = true;
             GameObject clone = Instantiate(objectInstantiator, spawnedSpawnerParentTransform, true);

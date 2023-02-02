@@ -62,15 +62,15 @@ public class FloorCollider : MonoBehaviour
     }
     private void Update()
     {
-        if (player.transform.position.y - transform.position.y >= 2)
+     
+
+        if (player.transform.position.y - transform.position.y >= -1f)
         {
-            transform.Translate(Vector3.up, Space.Self );
+            transform.Translate(Vector3.up, Space.Self);
             Debug.Log("Updated Floor Collider Y position.");
         }
 
-      
-        
-        
+
     }
 
     private void FixedUpdate()

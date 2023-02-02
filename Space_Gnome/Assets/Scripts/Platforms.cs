@@ -34,10 +34,16 @@ public class Platforms : MonoBehaviour
         Instantiate(clone = platformPrefab, player.transform.position, player.transform.rotation, platformObjectsParent);
         clone.SetActive(true);
         Debug.Log("Spawned platform.");
-        clone.transform.Translate(Vector3.down * platformSpawnDistance, Space.World);
+        clone.transform.Translate(Vector3.down * platformSpawnDistance, Space.Self);
+    }
+    private void Update()
+    {
+        if (player1Controls.Player.FirePlatform.triggered)
+        {
+            Fire();
+        }
     }
 
-   
     void OnEnable()
     {
         player1Controls.Player.Enable();
