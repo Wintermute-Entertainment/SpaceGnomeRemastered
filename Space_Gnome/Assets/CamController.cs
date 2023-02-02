@@ -24,17 +24,25 @@ public class CamController : MonoBehaviour
     {
         if (m_gnomeMovement.isFallingIdle)
         {
-            fallingCamera.SetActive(true);
-            vCam2.SetActive(true);
-            mainCamera.SetActive(false);
-            vCam1.SetActive(false);
+            if (mainCamera != null)
+            {
+                fallingCamera.SetActive(true);
+                vCam2.SetActive(true);
+                mainCamera.SetActive(false);
+                vCam1.SetActive(false);
+            }
+           
         }
         else if (m_floorCollider.isStanding) 
         {
-            mainCamera.SetActive(true);
-            vCam1.SetActive(true);
-            fallingCamera.SetActive(false);
-            vCam2.SetActive(false);
+            if (fallingCamera != null)
+            {
+                mainCamera.SetActive(true);
+                vCam1.SetActive(true);
+                fallingCamera.SetActive(false);
+                vCam2.SetActive(false);
+            }
+          
         }
     }
 

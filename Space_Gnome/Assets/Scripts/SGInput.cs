@@ -292,6 +292,17 @@ public partial class @SGInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a829b51c-a202-464e-bcd1-d0ba92d94f64"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1fba5a1c-cc17-4abd-a3fa-6cdcf54e2a76"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",

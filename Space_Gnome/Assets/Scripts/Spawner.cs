@@ -58,7 +58,7 @@ public class Spawner : MonoBehaviour
         randomPos.y = Random.Range(yDistanceFromPlayerMin, yDistanceFromPlayerMax);
         randomPos.z = Random.Range(zDistanceFromPlayerMin, zDistanceFromPlayerMax);
 
-        Vector3 position = new(randomPos.x, randomPos.y, randomPos.z);
+        Vector3 position = new Vector3(randomPos.x, randomPos.y, randomPos.z);
         firePoint.transform.position = playerPrefab.transform.position + position; ;
         objectInstantiator = gameObject;
     }
