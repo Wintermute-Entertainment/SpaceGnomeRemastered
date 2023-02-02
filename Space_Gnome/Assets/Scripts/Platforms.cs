@@ -31,7 +31,7 @@ public class Platforms : MonoBehaviour
 
     public void Fire()
     {
-        Instantiate(clone = platformPrefab, player.transform.position, player.transform.rotation, platformObjectsParent);
+        Instantiate(clone = spawnablePlatforms[Random.Range(0, 5)], player.transform.position, player.transform.rotation, platformObjectsParent);
         clone.SetActive(true);
         Debug.Log("Spawned platform.");
         clone.transform.Translate(Vector3.down * platformSpawnDistance, Space.Self);
@@ -41,6 +41,7 @@ public class Platforms : MonoBehaviour
         if (player1Controls.Player.Fire.triggered)
         {
             Fire();
+
         }
     }
 

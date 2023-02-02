@@ -221,7 +221,7 @@ public class GnomeMovement : MonoBehaviour
         if (playerRB.velocity.y >= velocityThreshhold)
 
         {
-            playerRB.AddForce(fallSpeed * Time.deltaTime * Vector3.down);
+            playerRB.AddForce(fallSpeed * gravity * Time.deltaTime * Vector3.down);
         }
 
         //Move transform down when in falling state.
