@@ -75,7 +75,7 @@ public class FloorCollider : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("Updated Floor Collider Y velocity from " + floorColliderRB.velocity.y + " to zero in Fixed Update.");
+       // Debug.Log("Updated Floor Collider Y velocity from " + floorColliderRB.velocity.y + " to zero in Fixed Update.");
         floorColliderRB.velocity.Set(0, 0, 0);
     }
 

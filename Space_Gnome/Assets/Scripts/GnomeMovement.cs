@@ -54,7 +54,7 @@ public class GnomeMovement : MonoBehaviour
     [SerializeField] int runSpeed;
 
     [SerializeField] float jumpSpeed;
-    [SerializeField] float fallSpeed;
+    public float fallSpeed;
     [SerializeField] Vector3 jumpHeight;
 
     [Header("Cameras")]

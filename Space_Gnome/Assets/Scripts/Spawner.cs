@@ -7,26 +7,34 @@ public class Spawner : MonoBehaviour
     [Header("Game Objects")]
     public GameObject objectInstantiator;   //This game object assigned in Inspector.
     [SerializeField] GameObject playerPrefab;
-    public GameObject[] objects;
-    private GameObject spawnedObject;
+    public GameObject[] objects; //Array of game objects to be instantiated from.
+    private GameObject spawnedObject; //Most recently spawned object.
+    private GameObject spawnedAsteroid; //Most recently spawned asteroid.
     [SerializeField] GameObject launchplatform;
+    [SerializeField] GameObject asteroidPrefab;
+    private GameObject clonedAsteroid;
 
     [Header("Fire Speed")]
     [SerializeField] int fireSpeed;  //Speed at which instanstiated objects are fired at from firePoint.
 
-    [SerializeField] Transform firePoint;
-    [SerializeField] Transform playerSpawnTransform;
-    [SerializeField] Transform spawnedObjectParentTransform;
-    [SerializeField] Transform spawnedSpawnerParentTransform;
+    [Header ("Transforms")]
+    [SerializeField] Transform firePoint; //Transform and direction to fire cloned object from/in.
+    [SerializeField] Transform playerSpawnTransform; //Currently unused. Initial player spawn in level.
+    [SerializeField] Transform spawnedObjectParentTransform; //Parent game object that cloned objects are placed under in Heiarchy.
+    [SerializeField] Transform spawnedSpawnerParentTransform; //Parent object in heiarchy of cloned Spawners.
+    [SerializeField] Transform rotationCenter; //Central point for objects to rotate around.
+    [SerializeField] Transform asteroidFirePoint;  //Transform and direction to instantiate asteroids from/in.
 
-    [SerializeField] bool isColliding;
-    [SerializeField] bool spawningAllowed;
-    private bool isSpawned;
+    [SerializeField] bool isColliding; //Used to detect if player is colliding with the gameobject this script is attached to.
+    [SerializeField] bool spawningAllowed; //True when object count is less than max object count.
+    [SerializeField] bool isSpawned; //Currently unused.  Starts in Awake function as false. True immiedietly after object spawned.
 
     [Header("Number of Objects Instantiated")]
     public int objectCount;                 //Current number of objects that have been instantiated.
+    public int asteroidCount;               //Current number of instantiated Asteroids.
     [Header("Max Objects Allowed")]
     public int maxObjectCount;              //Maximum number of objects that can be instantiated at once.
+    public int maxAsteroids;                //Maximum number of asteroids that can be instantiated at once.
     [Header("Max Spawners Allowed")]
     [SerializeField] int maxSpawnerCount;
 
@@ -38,7 +46,9 @@ public class Spawner : MonoBehaviour
     public float zDistanceFromPlayerMin;
     public float zDistanceFromPlayerMax;
 
-    [SerializeField] float spawnerSpawnDistance;
+    [Header("Spawned Objects Spawn Distance")]
+    [SerializeField] float spawnerSpawnDistance; //Y distance from player newly cloned Spawners are cloned at.
+    [SerializeField] float asteroidSpawnDistance; //Y distance from player newly cloned asteroids are cloned at.
 
     Vector3 randomPos;
 
@@ -48,9 +58,18 @@ public class Spawner : MonoBehaviour
         isSpawned = false;
         spawningAllowed = true;
     }
+
+    [System.Obsolete]
     private void Update()
     {
-        if (spawningAllowed) { if (isColliding == true) { SpawnObject(); } }
+
+        if (!spawningAllowed)
+        {
+            return;
+        }
+        else
+        { if (isColliding) { SpawnObject(); SpawnAsteroid(); } }
+
         if (objectCount <= maxObjectCount) { spawningAllowed = true; }
         else if (objectCount > maxObjectCount) { spawningAllowed = false; spawnedObject.SetActive(false); }
 
@@ -61,28 +80,56 @@ public class Spawner : MonoBehaviour
         Vector3 position = new Vector3(randomPos.x, randomPos.y, randomPos.z);
         firePoint.transform.position = playerPrefab.transform.position + position; ;
         objectInstantiator = gameObject;
+
+    }
+
+    [System.Obsolete]
+    private void FixedUpdate()
+    {
+        Vector3 asteroidPosition = new Vector3(randomPos.x, randomPos.y, randomPos.z);
+        asteroidFirePoint.transform.position = playerPrefab.transform.position + asteroidPosition;
+        if (clonedAsteroid != null) { clonedAsteroid.transform.RotateAround(rotationCenter.position, Random.Range(0, 361)); }
     }
     void SpawnObject()
     {
-
-        //int i;
         objectCount += 1;
-        Instantiate(spawnedObject = objects[Random.Range(0, objects.Length)], firePoint.position, firePoint.rotation, spawnedObjectParentTransform);
-        // GameObject[] spawnedCoins = new GameObject[3];
-        // GameObject spawnedCoin = spawnedCoins[Random.Range(0, spawnedCoins.Length +1)];
-        //  if (spawnedCoin != null) { Instantiate(spawnedCoin = spawnedCoins[Random.Range(0, spawnedCoins.Length)], spawnedObjectParentTransform, true); }
-        //   if (spawnedCoin != null) { Instantiate(spawnedCoin, spawnedObjectParentTransform, true); }
 
-        //for (i = 0; i >= 0; i++) ;
-        //Instantiate(spawnedCoins[i],spawnedObjectParentTransform,true);
+        Instantiate(spawnedObject = objects[Random.Range(0, objects.Length)], firePoint.position, firePoint.rotation, spawnedObjectParentTransform);
 
         if (spawnedObject != null) { if (spawnedObject.activeInHierarchy) { isSpawned = true; Debug.Log("Instantaited Object: " + spawnedObject.name); } }
         else { isSpawned = false; }
 
         isColliding = false;
+    }
 
-       // if (spawnedObjectParentTransform.childCount >= maxObjectCount) { spawnedObjectParentTransform.GetChild(1).gameObject.SetActive(false); }
-        //else { spawnedObject.SetActive(true); }
+    [System.Obsolete]
+    void SpawnAsteroid()
+    {
+        int i;
+        asteroidCount += 1;
+        for (i = 0; i <= maxAsteroids; i++) ;
+        if (asteroidCount <= maxAsteroids) 
+        {
+            GameObject clone = Instantiate(asteroidPrefab, asteroidFirePoint.position, asteroidFirePoint.transform.rotation, rotationCenter);
+            Debug.Log ("Spawned asteroid " + i + ".");
+            clone.transform.RotateAround(rotationCenter.transform.position, Random.Range(0, 361));
+            clone.transform.Translate(0, asteroidSpawnDistance, 0);
+            if (clonedAsteroid != null) { clonedAsteroid = clone; }
+        }
+        else if (asteroidCount > maxAsteroids && (clonedAsteroid != null)) { Destroy(clonedAsteroid/*rotationCenter.GetChild(i).gameObject)*/); }
+        else if (asteroidCount == 0) 
+        {
+            GameObject clone = Instantiate(asteroidPrefab, asteroidFirePoint.position, asteroidFirePoint.transform.rotation, rotationCenter);
+            Debug.Log("Max Asteroid count reached. Spawned asteroid " + i + ".");
+            clone.transform.RotateAround(rotationCenter.transform.position, Random.Range(0, 361));
+            clone.transform.Translate(0, asteroidSpawnDistance, 0);
+            if (clonedAsteroid != null) { clonedAsteroid = clone; }
+        }
+        else if (clonedAsteroid == null)
+        {
+            return;
+        }
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -110,19 +157,18 @@ public class Spawner : MonoBehaviour
             objectInstantiator.SetActive(false);
             clone.transform.Translate(new Vector3(0, spawnerSpawnDistance, 0), Space.World);
 
-            for (i = 0; i < maxSpawnerCount; i++) ;
+            for (i = 0; i <= maxSpawnerCount; i++) ;
             Debug.Log("Spawned Spawner, index " + i);
 
-            if (i >= maxSpawnerCount)
-            {
-                if (spawnedSpawnerParentTransform.childCount >= maxSpawnerCount)
-                {
-                    Destroy(spawnedSpawnerParentTransform.GetChild(i).gameObject);
-                    Debug.Log("Deactivated spawned Spawner " + i + ".");
-                }
-                //else if (i <= maxObjectCount) { spawnedSpawnerParentTransform.GetChild(i).gameObject.SetActive(true); }
-            }
-            else if (i <= maxObjectCount) { spawnedSpawnerParentTransform.GetChild(i).gameObject.SetActive(true); }
+            //if (i > maxSpawnerCount)
+            //{
+            //       // spawnedSpawnerParentTransform.GetChild(i).gameObject.SetActive(false);
+            //        Destroy(spawnedSpawnerParentTransform.GetChild(i).gameObject);
+            //        Debug.Log("Deactivated spawned spawner.");
+               
+            //}
+             if (i <= maxSpawnerCount) { objectInstantiator.SetActive(true); }
+             //else if (i> maxSpawnerCount) { Destroy(spawnedSpawnerParentTransform.GetChild(i).gameObject); }
             //Instantiate(objectInstantiator, playerPrefab.transform.position - new Vector3(0, -10, 0), objectInstantiator.transform.rotation, spawnedSpawnerParentTransform);
         }
     }
