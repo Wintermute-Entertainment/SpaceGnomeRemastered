@@ -12,7 +12,7 @@ public class Earth : MonoBehaviour
    // [SerializeField] bool hasMoved;
     private void FixedUpdate()
     {
-        if (m_gnomeMovement.isFallingIdle /*&& !hasMoved*/)
+        if (m_gnomeMovement.isFallingIdle && !m_gnomeMovement.isJumping)
         {
             //if (player.transform.position.y + earth.transform.position.y < earthAdjustmentThreshold)
             //{
@@ -26,6 +26,10 @@ public class Earth : MonoBehaviour
             //   // hasMoved = false;
             //}
             earth.transform.Translate(m_gnomeMovement.fallSpeed * m_gnomeMovement.gravity * Time.deltaTime * Vector3.down);
+        }
+        else if (m_gnomeMovement.isJumping)
+        {
+            earth.transform.Translate(m_gnomeMovement.fallSpeed * m_gnomeMovement.gravity * Time.deltaTime * Vector3.up);
         }
     }
 }

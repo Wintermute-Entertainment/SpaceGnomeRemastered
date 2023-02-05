@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716031352945973979}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.6750279, y: 13.424921, z: 63.837765}
-  m_LocalScale: {x: 0.56755114, y: 1000.0001, z: 0.56438404}
+  m_LocalPosition: {x: -2.2384, y: 1158.2, z: 155.1}
+  m_LocalScale: {x: 0.56755114, y: 10000, z: 1.6641992}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6186931576220619430}
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1790
+  m_VersionIndex: 1799
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -338,9 +338,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716031352945973979}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.542331, y: 5.4751024, z: 2.8339448}
   m_Center: {x: -0.2711655, y: -0.21172619, z: 1.4169724}
 --- !u!1 &5716031354249354206
@@ -372,8 +380,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716031354249354206}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.78942764, y: 13.424921, z: -9.588692}
-  m_LocalScale: {x: 0.56755114, y: 1000.0001, z: 0.56438404}
+  m_LocalPosition: {x: -2.3966, y: 1158.2, z: -104.4}
+  m_LocalScale: {x: 0.56755114, y: 10000, z: 1.4300362}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6186931576220619430}
@@ -591,7 +599,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1787
+  m_VersionIndex: 1796
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -681,9 +689,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716031354249354206}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.542331, y: 5.4751024, z: 2.8339448}
   m_Center: {x: -0.2711655, y: -0.21172619, z: 1.4169724}
 --- !u!1 &5716031354471810219
@@ -715,8 +731,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716031354471810219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.37938017, y: 13.424921, z: -9.588692}
-  m_LocalScale: {x: 0.007422569, y: 1000.0001, z: 42.57588}
+  m_LocalPosition: {x: -1.91, y: 1158.2, z: -208.72}
+  m_LocalScale: {x: 0.007422569, y: 10000, z: 196.53452}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6186931576220619430}
@@ -934,7 +950,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1781
+  m_VersionIndex: 1787
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1024,9 +1040,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716031354471810219}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.542331, y: 5.4751024, z: 2.8339448}
   m_Center: {x: -0.2711655, y: -0.21172619, z: 1.4169724}
 --- !u!1 &5716031354729474104
@@ -1058,8 +1082,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716031354729474104}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07270591, y: 13.424921, z: -9.588692}
-  m_LocalScale: {x: 0.007422569, y: 1000.0001, z: 42.57588}
+  m_LocalPosition: {x: 1.39, y: 1158.2, z: -152.05}
+  m_LocalScale: {x: 0.007422569, y: 10000, z: 156.54628}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6186931576220619430}
@@ -1277,7 +1301,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1784
+  m_VersionIndex: 1790
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1367,9 +1391,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716031354729474104}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.542331, y: 5.4751024, z: 2.8339448}
   m_Center: {x: -0.2711655, y: -0.21172619, z: 1.4169724}
 --- !u!1 &6186931576220619431
@@ -1406,7 +1438,7 @@ Transform:
   - {fileID: 5716031354249354200}
   - {fileID: 5716031352945973989}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6186931576718058752
 GameObject:
@@ -1439,8 +1471,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6186931576718058752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.598, y: 0, z: -44.8}
-  m_LocalScale: {x: 3, y: 0.1, z: 50}
+  m_LocalPosition: {x: 2.0728, y: 0, z: -228.16}
+  m_LocalScale: {x: 8.439, y: 0.1, z: 179.405}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6186931576220619430}
@@ -1658,7 +1690,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1799
+  m_VersionIndex: 1817
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1697,7 +1729,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6186931576718058752}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1748,9 +1780,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6186931576718058752}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 0
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.542331, y: 5.4751024, z: 2.8339448}
   m_Center: {x: -0.2711655, y: -0.21172619, z: 1.4169724}
 --- !u!65 &6186931576718058783
@@ -1761,9 +1801,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6186931576718058752}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.542331, y: 5.4751024, z: 2.8339448}
   m_Center: {x: -0.2711655, y: -0.21172619, z: 1.4169724}
 --- !u!114 &6186931576718058776
@@ -1788,20 +1836,27 @@ MonoBehaviour:
   - {fileID: 7297816181722554201, guid: 677a06c1620b9a947b4e659cb2a89fa1, type: 3}
   - {fileID: 7297816181722554201, guid: 677a06c1620b9a947b4e659cb2a89fa1, type: 3}
   launchplatform: {fileID: 0}
-  fireSpeed: 2
+  asteroidPrefab: {fileID: 0}
+  fireSpeed: 5
   firePoint: {fileID: 0}
   playerSpawnTransform: {fileID: 0}
   spawnedObjectParentTransform: {fileID: 0}
   spawnedSpawnerParentTransform: {fileID: 0}
+  rotationCenter: {fileID: 0}
+  asteroidFirePoint: {fileID: 0}
   isColliding: 0
   spawningAllowed: 0
+  isSpawned: 0
   objectCount: 0
-  maxObjectCount: 25
-  maxSpawnerCount: 100
+  asteroidCount: 0
+  maxObjectCount: 10000
+  maxAsteroids: 10000
+  maxSpawnerCount: 1000
   xDistanceFromPlayerMin: -0.1
   xDistanceFromPlayerMax: 0.1
-  yDistanceFromPlayerMin: -100
-  yDistanceFromPlayerMax: -50
+  yDistanceFromPlayerMin: -150
+  yDistanceFromPlayerMax: -100
   zDistanceFromPlayerMin: -0.1
   zDistanceFromPlayerMax: 0.1
-  spawnerSpawnDistance: -35
+  spawnerSpawnDistance: -50
+  asteroidSpawnDistance: -500
