@@ -25,6 +25,11 @@ public class GnomeMovement : MonoBehaviour
     public bool isDancing;
     public bool isJumping;
 
+    //Fall Damage Booleans
+
+    public bool startedStanding;
+    public bool startedFalling;
+
     [Header("Input")]
     //INPUT:
     public SGInput player1Controls;
@@ -37,7 +42,7 @@ public class GnomeMovement : MonoBehaviour
 
     public float defaultGravity = -9.81f;
     public float gravity = -9.81f;
-    [SerializeField] float velocityThreshhold = -10f;
+    //[SerializeField] float velocityThreshhold = -10f;
 
     [Header("Movement Variables")]
 
@@ -56,6 +61,8 @@ public class GnomeMovement : MonoBehaviour
     [SerializeField] float jumpSpeed;
     public float fallSpeed;
     [SerializeField] Vector3 jumpHeight;
+    [SerializeField] int boostJumpCost;
+    [SerializeField] int boostDanceBonus;
 
     [Header("Cameras")]
 
@@ -108,8 +115,11 @@ public class GnomeMovement : MonoBehaviour
   
     void HandleMovement() //Move transform based on Move Vector.
     {
-        Vector3 m = playerSpeed * Time.deltaTime * new Vector3(move.x, move.z, move.y).normalized;
-        transform.Translate(m, Space.Self);
+        if (isWalking || isJumping || isSprinting || isFallingIdle)
+        {
+            Vector3 m = playerSpeed * Time.deltaTime * new Vector3(move.x, move.z, move.y).normalized;
+            transform.Translate(m, Space.Self);
+        }
     }
 
     void HandleRotation() //Look at current Position + Look Vector.
@@ -133,9 +143,13 @@ public class GnomeMovement : MonoBehaviour
     // ANIMATION STATES:
     void Dance()
     {
-        ResetStates();
-        player1Animator.SetBool("isDancing", true);
-        isDancing = true;
+        if (!isFallingIdle)
+        {
+            ResetStates();
+            player1Animator.SetBool("isDancing", true);
+            isDancing = true;
+            Toolbox.instance.m_playerManager.boost += boostDanceBonus;
+        }
     }
     void StopDancing()
     {
@@ -193,14 +207,18 @@ public class GnomeMovement : MonoBehaviour
     public void Jump()
     {
         ResetStates();
-        isJumping = true;
 
-        player1Animator.SetBool("isJumping", true);
+        if (Toolbox.instance.m_playerManager.boost >= boostJumpCost)
+        {
+            Toolbox.instance.m_playerManager.boost -= boostJumpCost;
+            isJumping = true;
 
-        Debug.Log("Player Rigidbody Velocity at JUMP: " + playerRB.velocity);
+            player1Animator.SetBool("isJumping", true);
 
-        transform.Translate(jumpHeight.y * jumpSpeed * Time.deltaTime * Vector3.up); //Move player transform up when Jump called.
+            //  Debug.Log("Player Rigidbody Velocity at JUMP: " + playerRB.velocity);
 
+            transform.Translate(jumpHeight.y * jumpSpeed * Time.deltaTime * Vector3.up); //Move player transform up when Jump called.
+        }
     }
     void StopJumping()
     {
@@ -216,13 +234,13 @@ public class GnomeMovement : MonoBehaviour
         if (!player1Controls.Player.Move.inProgress && !player1Controls.Player.Jump.inProgress && !player1Controls.Player.FirePlatform.inProgress
              && !player1Controls.Player.Run.inProgress && !player1Controls.Player.Dance.inProgress) { playerRB.velocity.Set(0, 0, 0); playerRB.useGravity = false; }
 
-        //Add downforce to RB when player Y velocity is above threshold.
+        //Add downforce to RB when player Y velocity is above threshold and in falling state.
 
-        if (playerRB.velocity.y >= velocityThreshhold)
+        //if (playerRB.velocity.y >= velocityThreshhold && isFallingIdle)
 
-        {
-            playerRB.AddForce(fallSpeed * gravity * Time.deltaTime * Vector3.down);
-        }
+        //{
+        //    playerRB.AddForce(fallSpeed * gravity * Time.deltaTime * Vector3.down);
+        //}
 
         //Move transform down when in falling state.
 
@@ -245,10 +263,11 @@ public class GnomeMovement : MonoBehaviour
 
         if (m_floorCollider.isStanding) //IF FLOOR COLLIDER OBJECT IS COLLIDING WITH OBJECT TAGGED "Floor"...
         {
-
+            
             if (isFallingIdle) { StopFallingIdle(); }
             if (isJumping) { StopJumping(); }
             Debug.Log("isStanding = true;");
+
 
             //WALKING
             if (player1Controls.Player.Move.triggered)
@@ -325,8 +344,8 @@ public class GnomeMovement : MonoBehaviour
             isSprinting = false;
             isDancing = false;
             Debug.Log("Started Falling Idle.");
-
         }
+       
     }
 
     void OnEnable()
@@ -338,5 +357,6 @@ public class GnomeMovement : MonoBehaviour
     {
         player1Controls.Player.Disable();
     }
+   
 }
 

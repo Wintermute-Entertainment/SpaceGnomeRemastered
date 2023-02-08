@@ -20,30 +20,30 @@ public class Platforms : MonoBehaviour
 
     [SerializeField] float platformSpawnDistance;
 
+    [SerializeField] Vector3 platformSpawnOffset;
+
     private void Awake()
     {
 
         clone = null;
         player1Controls = new SGInput();
-
         player1Controls.Player.FirePlatform.performed += ctx => Fire();
     }
 
     public void Fire()
     {
-        Instantiate(clone = spawnablePlatforms[Random.Range(0, 5)], player.transform.position, player.transform.rotation, platformObjectsParent);
+        Instantiate(clone = spawnablePlatforms[Random.Range(0, 5)], player.transform.position - platformSpawnOffset, player.transform.rotation, platformObjectsParent);
         clone.SetActive(true);
         Debug.Log("Spawned platform.");
         clone.transform.Translate(Vector3.down * platformSpawnDistance, Space.Self);
     }
-    private void Update()
-    {
-        if (player1Controls.Player.Fire.triggered)
-        {
-            Fire();
-
-        }
-    }
+    //private void Update()
+    //{
+    //    if (player1Controls.Player.Fire.triggered)
+    //    {
+    //        Fire();
+    //    }
+    //}
 
     void OnEnable()
     {

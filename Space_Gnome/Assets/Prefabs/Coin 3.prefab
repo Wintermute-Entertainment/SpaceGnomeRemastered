@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 657847049076555936}
   m_Layer: 0
   m_Name: Coin 3
-  m_TagString: Untagged
+  m_TagString: Coin3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5837874688937183334
 Transform:
@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7297816181722554201}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7901894, y: -0, z: -0, w: 0.6128628}
+  m_LocalPosition: {x: 0, y: 0.34824792, z: 0.44901034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 104.406006, y: 0, z: 0}
 --- !u!33 &4083454064841279181
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
-  m_Height: 2
+  m_Radius: 1.4602082
+  m_Height: 2.9204164
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.057026625, y: 0, z: 0.35955393}

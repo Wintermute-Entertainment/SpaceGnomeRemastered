@@ -27,7 +27,8 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] bool isColliding; //Used to detect if player is colliding with the gameobject this script is attached to.
     [SerializeField] bool spawningAllowed; //True when object count is less than max object count.
-    [SerializeField] bool isSpawned; //Currently unused.  Starts in Awake function as false. True immiedietly after object spawned.
+    [SerializeField] bool isSpawned; //Currently unused.  Starts in Awake function as false. True immiedietly after object spawned if one was spawned this frame.
+                                     //Reset to false on SpawnObject() call.
 
     [Header("Number of Objects Instantiated")]
     public int objectCount;                 //Current number of objects that have been instantiated.
@@ -93,8 +94,8 @@ public class Spawner : MonoBehaviour
     void SpawnObject()
     {
         objectCount += 1;
-
-        Instantiate(spawnedObject = objects[Random.Range(0, objects.Length)], firePoint.position, firePoint.rotation, spawnedObjectParentTransform);
+       Instantiate(spawnedObject = objects[Random.Range(0, objects.Length)], firePoint.position, firePoint.rotation, spawnedObjectParentTransform); 
+        
 
         if (spawnedObject != null) { if (spawnedObject.activeInHierarchy) { isSpawned = true; Debug.Log("Instantaited Object: " + spawnedObject.name); } }
         else { isSpawned = false; }
@@ -158,17 +159,11 @@ public class Spawner : MonoBehaviour
             clone.transform.Translate(new Vector3(0, spawnerSpawnDistance, 0), Space.World);
 
             for (i = 0; i <= maxSpawnerCount; i++) ;
-            Debug.Log("Spawned Spawner, index " + i);
+            Debug.Log("Collision # " + i + " with player.");
 
-            //if (i > maxSpawnerCount)
-            //{
-            //       // spawnedSpawnerParentTransform.GetChild(i).gameObject.SetActive(false);
-            //        Destroy(spawnedSpawnerParentTransform.GetChild(i).gameObject);
-            //        Debug.Log("Deactivated spawned spawner.");
-               
-            //}
+           
              if (i <= maxSpawnerCount) { objectInstantiator.SetActive(true); }
-             //else if (i> maxSpawnerCount) { Destroy(spawnedSpawnerParentTransform.GetChild(i).gameObject); }
+             //else if (i> maxSpawnerCount) { Destroy(spawnedSpawnerParentTransform.GetChild(1).gameObject); }
             //Instantiate(objectInstantiator, playerPrefab.transform.position - new Vector3(0, -10, 0), objectInstantiator.transform.rotation, spawnedSpawnerParentTransform);
         }
     }
