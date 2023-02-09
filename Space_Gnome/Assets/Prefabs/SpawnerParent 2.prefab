@@ -248,7 +248,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1802
+  m_VersionIndex: 1808
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1802
+  m_VersionIndex: 1808
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1793
+  m_VersionIndex: 1796
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1793
+  m_VersionIndex: 1799
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1823
+  m_VersionIndex: 1826
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1729,7 +1729,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6186931576718058752}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1830,17 +1830,23 @@ MonoBehaviour:
   playerPrefab: {fileID: 0}
   objects:
   - {fileID: 7297816181722554201, guid: c73ae7bd0766e78449335d70bec9f00d, type: 3}
-  - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
-  - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
+  - {fileID: 1344946008622698791, guid: 18fee0e66498e9c47a757b0b3b813abc, type: 3}
+  - {fileID: 7297816181722554201, guid: c73ae7bd0766e78449335d70bec9f00d, type: 3}
   - {fileID: 7297816181722554201, guid: 677a06c1620b9a947b4e659cb2a89fa1, type: 3}
-  - {fileID: 7297816181722554201, guid: 677a06c1620b9a947b4e659cb2a89fa1, type: 3}
+  - {fileID: 7501362524200101829, guid: 30172832b63746942a440f0a11224cc9, type: 3}
   - {fileID: 7297816181722554201, guid: 677a06c1620b9a947b4e659cb2a89fa1, type: 3}
   - {fileID: 1344946008622698791, guid: 18fee0e66498e9c47a757b0b3b813abc, type: 3}
   - {fileID: 7501362524200101829, guid: 30172832b63746942a440f0a11224cc9, type: 3}
   - {fileID: 3192407840309293651, guid: 2b3704d2a8fedbd4196a5e56614f94e8, type: 3}
   - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
-  - {fileID: 7297816181722554201, guid: 677a06c1620b9a947b4e659cb2a89fa1, type: 3}
+  - {fileID: 3192407840309293651, guid: 2b3704d2a8fedbd4196a5e56614f94e8, type: 3}
   - {fileID: 7297816181722554201, guid: c73ae7bd0766e78449335d70bec9f00d, type: 3}
+  - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
+  - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
+  - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
+  - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
+  - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
+  - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
   launchplatform: {fileID: 0}
   asteroidPrefab: {fileID: 0}
   fireSpeed: 5
@@ -1855,14 +1861,14 @@ MonoBehaviour:
   isSpawned: 0
   objectCount: 0
   asteroidCount: 0
-  maxObjectCount: 100000
-  maxAsteroids: 100000
-  maxSpawnerCount: 100000
-  xDistanceFromPlayerMin: -0.1
-  xDistanceFromPlayerMax: 0.1
-  yDistanceFromPlayerMin: -200
-  yDistanceFromPlayerMax: -150
-  zDistanceFromPlayerMin: -0.1
-  zDistanceFromPlayerMax: 0.1
-  spawnerSpawnDistance: -100
-  asteroidSpawnDistance: -300
+  maxObjectCount: 1000000
+  maxAsteroids: 1000000
+  maxSpawnerCount: 1000000
+  xDistanceFromPlayerMin: 0
+  xDistanceFromPlayerMax: 0
+  yDistanceFromPlayerMin: -99
+  yDistanceFromPlayerMax: -66
+  zDistanceFromPlayerMin: 0
+  zDistanceFromPlayerMax: 0
+  spawnerSpawnDistance: -33
+  asteroidSpawnDistance: -66

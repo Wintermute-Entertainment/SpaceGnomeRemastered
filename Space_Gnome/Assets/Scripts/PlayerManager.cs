@@ -35,6 +35,7 @@ public class PlayerManager : MonoBehaviour
         {
             boost = boostCap;
         }
+        if (boost<= 0) { boost= 0; }
     }
 
 

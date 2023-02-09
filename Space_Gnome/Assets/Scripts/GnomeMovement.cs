@@ -58,11 +58,14 @@ public class GnomeMovement : MonoBehaviour
     [SerializeField] int defaultPlayerSpeed;
     [SerializeField] int runSpeed;
 
-    [SerializeField] float jumpSpeed;
+    [Header("Jumping Variables")]
+
+    public float jumpSpeed;
     public float fallSpeed;
-    [SerializeField] Vector3 jumpHeight;
+    public Vector3 jumpHeight;
     [SerializeField] int boostJumpCost;
     [SerializeField] int boostDanceBonus;
+    public bool jumpingAllowed;
 
     [Header("Cameras")]
 
@@ -207,18 +210,20 @@ public class GnomeMovement : MonoBehaviour
     public void Jump()
     {
         ResetStates();
-
-        if (Toolbox.instance.m_playerManager.boost >= boostJumpCost)
+        
+        if (Toolbox.instance.m_playerManager.boost >= boostJumpCost && !isFallingIdle)
         {
-            Toolbox.instance.m_playerManager.boost -= boostJumpCost;
+            
             isJumping = true;
-
+            
             player1Animator.SetBool("isJumping", true);
+            Debug.Log("isJumping");
 
             //  Debug.Log("Player Rigidbody Velocity at JUMP: " + playerRB.velocity);
 
             transform.Translate(jumpHeight.y * jumpSpeed * Time.deltaTime * Vector3.up); //Move player transform up when Jump called.
         }
+       
     }
     void StopJumping()
     {
@@ -261,12 +266,19 @@ public class GnomeMovement : MonoBehaviour
         HandleMovement();
         HandleRotation();
 
+        if (isJumping)
+        {
+            Toolbox.instance.m_playerManager.boost -= boostJumpCost;
+        }
+       
+
         if (m_floorCollider.isStanding) //IF FLOOR COLLIDER OBJECT IS COLLIDING WITH OBJECT TAGGED "Floor"...
         {
             
             if (isFallingIdle) { StopFallingIdle(); }
             if (isJumping) { StopJumping(); }
             Debug.Log("isStanding = true;");
+            //jumpingAllowed = true;
 
 
             //WALKING
@@ -294,7 +306,7 @@ public class GnomeMovement : MonoBehaviour
                 Debug.Log("Started Idling.");
             }
             //JUMPING
-            if (!isFallingIdle && !isJumping && player1Controls.Player.Jump.triggered)
+            if (!isFallingIdle && !isJumping && player1Controls.Player.Jump.triggered /*&& jumpingAllowed*/)
             {
                 Jump();
                 isJumping = true;
@@ -335,7 +347,7 @@ public class GnomeMovement : MonoBehaviour
         //FALLING IDLE
         else if (!m_floorCollider.isStanding && !player1Controls.Player.Jump.inProgress)
         {
-
+            //jumpingAllowed = false;
             FallingIdle();
             isFallingIdle = true;
             isIdle = false;
@@ -345,6 +357,7 @@ public class GnomeMovement : MonoBehaviour
             isDancing = false;
             Debug.Log("Started Falling Idle.");
         }
+       
        
     }
 

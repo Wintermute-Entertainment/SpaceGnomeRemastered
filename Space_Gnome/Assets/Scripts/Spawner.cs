@@ -163,7 +163,7 @@ public class Spawner : MonoBehaviour
 
            
              if (i <= maxSpawnerCount) { objectInstantiator.SetActive(true); }
-             //else if (i> maxSpawnerCount) { Destroy(spawnedSpawnerParentTransform.GetChild(1).gameObject); }
+             //else if (i> maxSpawnerCount) { Destroy(spawnedSpawnerParentTransform.GetChild(transform.childCount -1).gameObject); }
             //Instantiate(objectInstantiator, playerPrefab.transform.position - new Vector3(0, -10, 0), objectInstantiator.transform.rotation, spawnedSpawnerParentTransform);
         }
     }

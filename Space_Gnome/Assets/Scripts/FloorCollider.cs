@@ -26,12 +26,12 @@ public class FloorCollider : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Floor"))
         {
-            if (m_gnomeMovement.player1Controls.Player.Jump.triggered)
+            if (m_gnomeMovement.player1Controls.Player.Jump.triggered /*&& Toolbox.instance.m_gnomeMovement.jumpingAllowed*/)
             {
                 isStanding = false;
                 Debug.Log("Started Jumping...");
                 //  m_gnomeMovement.ResetStates();
-                m_gnomeMovement.Jump();
+                //m_gnomeMovement.Jump();
                 m_gnomeMovement.isJumping = true;
                 m_gnomeMovement.isIdle = false;
                 m_gnomeMovement.isFallingIdle = false;
