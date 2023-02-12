@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI timerText;
-    public float startTime;
-    public float timerTime;
+    [SerializeField] TextMeshProUGUI timerText; //Timer text object.
+    public float startTime;     //Time to start countdown timer at.
+    public float timerTime;     //Timer current time.
 
     public static bool timerFinished;
     public bool timerPaused;
 
-    public float t;
+    public float t;         //Used to calculate time left on timer (negative value).
 
-    private static float remainingMinutes;
+    private static float remainingMinutes;  //Unused currently, maybe later for UI.
     private static float remainingSeconds;
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
 
-        if (timerFinished)      //Game over condition when timer runs out.
+        if (timerFinished)      //True at game over condition when timer runs out.
             return;
 
         t = Time.time - startTime; //Time variable.

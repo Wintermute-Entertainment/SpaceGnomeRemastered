@@ -30,8 +30,7 @@ public class FloorCollider : MonoBehaviour
             {
                 isStanding = false;
                 Debug.Log("Started Jumping...");
-                //  m_gnomeMovement.ResetStates();
-                //m_gnomeMovement.Jump();
+                
                 m_gnomeMovement.isJumping = true;
                 m_gnomeMovement.isIdle = false;
                 m_gnomeMovement.isFallingIdle = false;
@@ -44,7 +43,7 @@ public class FloorCollider : MonoBehaviour
             {
                 isStanding = false;
                 Debug.Log("Started FallingIdle...");
-                //  m_gnomeMovement.ResetStates();
+                
                 m_gnomeMovement.FallingIdle();
                 m_gnomeMovement.isFallingIdle = true;
                 m_gnomeMovement.isIdle = false;

@@ -10,7 +10,11 @@ public class Toolbox : MonoBehaviour
     public Asteroids m_asteroids;
     public Timer m_timer;
     public FallDamage m_fallDamage;
-    
+    public Audio m_audio;
+    public UI_Manager m_uIManager;
+    public HighScores m_highScores;
+
+
 
     //START SINGLETON
     public static Toolbox instance;
@@ -31,7 +35,7 @@ public class Toolbox : MonoBehaviour
             return instance;
         }
     }
-    //END SIngleton
+    //END Singleton
     private void Awake()
     {
         instance = this;

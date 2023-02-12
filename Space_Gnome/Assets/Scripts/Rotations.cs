@@ -20,9 +20,9 @@ public class Rotations : MonoBehaviour
 
         if (m_gnomeMovememnt.isFallingIdle)
         {
-            
-            player.transform.RotateAround(earth.transform.position, rotationIncrements);
+
+            player.transform.RotateAround(earth.transform.position * Time.deltaTime, rotationIncrements);
         }
-        
+
     }
 }

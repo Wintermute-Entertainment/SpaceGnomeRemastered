@@ -37,18 +37,16 @@ public class Platforms : MonoBehaviour
         Debug.Log("Spawned platform.");
         clone.transform.Translate(Vector3.down * platformSpawnDistance, Space.Self);
     }
-    private void Update()
-    {
-        if (player1Controls.Player.Fire.triggered)
-        {
-            Fire();
-        }
-    }
-
+    //private void Update()
+    //{
+    //    if (player1Controls.Player.Fire.triggered)
+    //    {
+    //        Fire();
+    //    }
+    //}                                                     //Possibly cause of double platform spawning!
     void OnEnable()
     {
         player1Controls.Player.Enable();
-
     }
     void OnDisable()
     {

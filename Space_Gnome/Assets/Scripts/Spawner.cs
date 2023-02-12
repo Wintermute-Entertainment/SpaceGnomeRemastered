@@ -10,12 +10,12 @@ public class Spawner : MonoBehaviour
     public GameObject[] objects; //Array of game objects to be instantiated from.
     private GameObject spawnedObject; //Most recently spawned object.
     private GameObject spawnedAsteroid; //Most recently spawned asteroid.
-    [SerializeField] GameObject launchplatform;
+    //[SerializeField] GameObject launchplatform;
     [SerializeField] GameObject asteroidPrefab;
     private GameObject clonedAsteroid;
 
-    [Header("Fire Speed")]
-    [SerializeField] int fireSpeed;  //Speed at which instanstiated objects are fired at from firePoint.
+    //[Header("Fire Speed")]
+    //[SerializeField] int fireSpeed;  //Speed at which instanstiated objects are fired at from firePoint.
 
     [Header ("Transforms")]
     [SerializeField] Transform firePoint; //Transform and direction to fire cloned object from/in.
@@ -56,7 +56,7 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        isSpawned = false;
+        isSpawned = false; //Currently unused.
         spawningAllowed = true;
     }
 
@@ -117,7 +117,7 @@ public class Spawner : MonoBehaviour
             clone.transform.Translate(0, asteroidSpawnDistance, 0);
             if (clonedAsteroid != null) { clonedAsteroid = clone; }
         }
-        else if (asteroidCount > maxAsteroids && (clonedAsteroid != null)) { Destroy(clonedAsteroid/*rotationCenter.GetChild(i).gameObject)*/); }
+        else if (asteroidCount > maxAsteroids && (clonedAsteroid != null)) { Destroy(clonedAsteroid); }
         else if (asteroidCount == 0) 
         {
             GameObject clone = Instantiate(asteroidPrefab, asteroidFirePoint.position, asteroidFirePoint.transform.rotation, rotationCenter);
@@ -130,28 +130,22 @@ public class Spawner : MonoBehaviour
         {
             return;
         }
-
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-
             Instantiate(objectInstantiator, spawnedSpawnerParentTransform, true);
-            //collision.gameObject.transform.position = playerSpawnTransform.transform.position;
             isColliding = true;
-
         }
         else { collision.gameObject.SetActive(false); }
     }
     public void OnTriggerEnter(Collider collision)
     {
-
-
         if (collision.gameObject.CompareTag("Player"))
         {
             int i;
-            Destroy(launchplatform);
+            //Destroy(launchplatform);
 
             isColliding = true;
             GameObject clone = Instantiate(objectInstantiator, spawnedSpawnerParentTransform, true);
@@ -159,12 +153,9 @@ public class Spawner : MonoBehaviour
             clone.transform.Translate(new Vector3(0, spawnerSpawnDistance, 0), Space.World);
 
             for (i = 0; i <= maxSpawnerCount; i++) ;
-            Debug.Log("Collision # " + i + " with player.");
-
-           
-             if (i <= maxSpawnerCount) { objectInstantiator.SetActive(true); }
+            if (i <= maxSpawnerCount) { objectInstantiator.SetActive(true); }
              //else if (i> maxSpawnerCount) { Destroy(spawnedSpawnerParentTransform.GetChild(transform.childCount -1).gameObject); }
-            //Instantiate(objectInstantiator, playerPrefab.transform.position - new Vector3(0, -10, 0), objectInstantiator.transform.rotation, spawnedSpawnerParentTransform);
+            //^---Would be good to destroy old spawners rather than simply set to inactive.
         }
     }
 }

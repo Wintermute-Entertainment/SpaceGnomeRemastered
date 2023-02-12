@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.UI;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 using DG.Tweening;
@@ -11,11 +11,9 @@ using DG.Tweening;
 public class GnomeMovement : MonoBehaviour
 {
     [Header("Animation Variables")]
-    //ANIMATION VARIABLES:
+
     public Animator player1Animator;
-
     [SerializeField] Transform modelTransform;
-
     [SerializeField] bool isStanding;
 
     public bool isFallingIdle;
@@ -42,8 +40,7 @@ public class GnomeMovement : MonoBehaviour
 
     public float defaultGravity = -9.81f;
     public float gravity = -9.81f;
-    //[SerializeField] float velocityThreshhold = -10f;
-
+    
     [Header("Movement Variables")]
 
     //MOVEMENT VARIABLES:
@@ -65,7 +62,6 @@ public class GnomeMovement : MonoBehaviour
     public Vector3 jumpHeight;
     [SerializeField] int boostJumpCost;
     [SerializeField] int boostDanceBonus;
-    public bool jumpingAllowed;
 
     [Header("Cameras")]
 
@@ -74,6 +70,10 @@ public class GnomeMovement : MonoBehaviour
     public Cinemachine.CinemachineVirtualCamera vCam2;
 
     public Cinemachine.CinemachineBrain cineBrain;
+
+    //AUDIO
+
+    private bool landingSoundPlayed;
 
     //START SINGLETON:
 
@@ -104,7 +104,7 @@ public class GnomeMovement : MonoBehaviour
 
         player1Controls = new SGInput();
 
-        gravity = -9.81f;
+        gravity = defaultGravity;
 
         player1Controls.Player.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         player1Controls.Player.Look.performed += ctx => look = ctx.ReadValue<Vector2>();
@@ -112,11 +112,10 @@ public class GnomeMovement : MonoBehaviour
         player1Controls.Player.Run.performed += ctx => Run();
         player1Controls.Player.Run.canceled += ctx => CancelRun();
         player1Controls.Player.Dance.performed += ctx => Dance();
-
     }
 
   
-    void HandleMovement() //Move transform based on Move Vector.
+    void HandleMovement() //Move player transform based on Move Vector.
     {
         if (isWalking || isJumping || isSprinting || isFallingIdle)
         {
@@ -124,8 +123,7 @@ public class GnomeMovement : MonoBehaviour
             transform.Translate(m, Space.Self);
         }
     }
-
-    void HandleRotation() //Look at current Position + Look Vector.
+    void HandleRotation() //Have player look at current Position + Look Vector.
     {
         Vector3 currentPosition = transform.position;
         Vector3 newPosition = new Vector3(look.x, look.z, look.y).normalized * Time.deltaTime;
@@ -215,7 +213,7 @@ public class GnomeMovement : MonoBehaviour
         {
             
             isJumping = true;
-            
+            Toolbox.instance.m_audio.jumping.Play();
             player1Animator.SetBool("isJumping", true);
             Debug.Log("isJumping");
 
@@ -229,8 +227,6 @@ public class GnomeMovement : MonoBehaviour
     {
         player1Animator.SetBool("isJumping", false);
         isJumping = false;
-
-        
     }
     private void FixedUpdate()
     {
@@ -275,6 +271,12 @@ public class GnomeMovement : MonoBehaviour
         if (m_floorCollider.isStanding) //IF FLOOR COLLIDER OBJECT IS COLLIDING WITH OBJECT TAGGED "Floor"...
         {
             
+            if (!landingSoundPlayed)
+            {
+                Toolbox.instance.m_audio.landing.PlayOneShot(Toolbox.instance.m_audio.audioClip1);
+                landingSoundPlayed = true;
+            }
+            
             if (isFallingIdle) { StopFallingIdle(); }
             if (isJumping) { StopJumping(); }
             Debug.Log("isStanding = true;");
@@ -316,6 +318,7 @@ public class GnomeMovement : MonoBehaviour
                 isSprinting = false;
                 isDancing = false;
                 Debug.Log("Jumped");
+                landingSoundPlayed = false;
 
             }
             //DANCING
@@ -347,7 +350,6 @@ public class GnomeMovement : MonoBehaviour
         //FALLING IDLE
         else if (!m_floorCollider.isStanding && !player1Controls.Player.Jump.inProgress)
         {
-            //jumpingAllowed = false;
             FallingIdle();
             isFallingIdle = true;
             isIdle = false;
@@ -356,11 +358,9 @@ public class GnomeMovement : MonoBehaviour
             isSprinting = false;
             isDancing = false;
             Debug.Log("Started Falling Idle.");
-        }
-       
-       
+            landingSoundPlayed = false;
+        }       
     }
-
     void OnEnable()
     {
         player1Controls.Player.Enable();
@@ -370,6 +370,5 @@ public class GnomeMovement : MonoBehaviour
     {
         player1Controls.Player.Disable();
     }
-   
 }
 

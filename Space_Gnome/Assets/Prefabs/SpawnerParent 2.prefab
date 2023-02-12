@@ -248,7 +248,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1808
+  m_VersionIndex: 1820
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1808
+  m_VersionIndex: 1820
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1796
+  m_VersionIndex: 1814
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1799
+  m_VersionIndex: 1817
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1418,7 +1418,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6186931576220619430
 Transform:
@@ -1438,7 +1438,7 @@ Transform:
   - {fileID: 5716031354249354200}
   - {fileID: 5716031352945973989}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6186931576718058752
 GameObject:
@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1826
+  m_VersionIndex: 1844
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1847,6 +1847,8 @@ MonoBehaviour:
   - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
   - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
   - {fileID: 7297816181722554201, guid: 8bb6b4881f415ab49a61499c1378a743, type: 3}
+  - {fileID: 2176142595726207063, guid: 1cdc6ec201f282e43a0c7aac9f06bfdf, type: 3}
+  - {fileID: 2176142595726207063, guid: 1cdc6ec201f282e43a0c7aac9f06bfdf, type: 3}
   launchplatform: {fileID: 0}
   asteroidPrefab: {fileID: 0}
   fireSpeed: 5

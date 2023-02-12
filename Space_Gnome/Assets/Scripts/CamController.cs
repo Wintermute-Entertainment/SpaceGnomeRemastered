@@ -44,6 +44,14 @@ public class CamController : MonoBehaviour
             }
           
         }
+        if (!vCam1.activeInHierarchy && !vCam2.activeInHierarchy)
+        {
+            vCam1.SetActive(true);
+        }
+        if (!mainCamera.activeInHierarchy)
+        {
+            mainCamera.SetActive(true);
+        }
     }
 
     void OnEnable()

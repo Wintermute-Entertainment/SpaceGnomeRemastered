@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class FallDamage : MonoBehaviour
 {
-
-
     public float height;
     public float landingHeight;
     float fallDistance;
-
 
     int fallDamage;
     [SerializeField] int fallDamageThreshHoldMinimum;
@@ -18,7 +15,6 @@ public class FallDamage : MonoBehaviour
     [SerializeField] int fallDamageThreshHold3;
     [SerializeField] int fallDamageThreshHold4;
     
-
     [SerializeField] int fallDamage1;
     [SerializeField] int fallDamage2;
     [SerializeField] int fallDamage3;
@@ -57,17 +53,13 @@ public class FallDamage : MonoBehaviour
     {
         if (Toolbox.instance.m_gnomeMovement.isJumping) { height = transform.position.y; }
     }
-
     public void FallDamageHPDrain()
     {
-           
-
             if (fallDistance < fallDamageThreshHoldMinimum)
             {
                 fallDamage = 0;                             //Set fall damage based on fall distance.
                 Debug.Log("Took 0 fall damage.");
             }
-
             else if (fallDistance > fallDamageThreshHoldMinimum && fallDistance < fallDamageThreshHold1)
             {
                 fallDamage = fallDamage1; 
@@ -75,7 +67,7 @@ public class FallDamage : MonoBehaviour
                 Toolbox.instance.m_playerManager.boost -= boostPenalty1;
                 //Play sounds and PE and subtract boost penalty and points loss.
                 Debug.Log("Took fallDamage1");
-
+               Toolbox.instance.m_audio.hardFall1.PlayOneShot(Toolbox.instance.m_audio.audioClip1);
             }
             else if (fallDistance > fallDamageThreshHold1 && fallDistance < fallDamageThreshHold2)
             {
@@ -83,7 +75,7 @@ public class FallDamage : MonoBehaviour
                 Toolbox.instance.m_coins.hP -= fallDamage2;
                 Toolbox.instance.m_playerManager.boost -= boostPenalty2;
                 Debug.Log("Took fallDamage2");
-
+                Toolbox.instance.m_audio.hardFall2.PlayOneShot(Toolbox.instance.m_audio.audioClip2);
             }
             else if (fallDistance > fallDamageThreshHold2 && fallDistance < fallDamageThreshHold3)
             {
@@ -91,7 +83,6 @@ public class FallDamage : MonoBehaviour
                 Toolbox.instance.m_coins.hP -= fallDamage3;
                 Toolbox.instance.m_playerManager.boost -= boostPenalty3;
                 Debug.Log("Took fallDamage3");
-
             }
             else if (fallDistance > fallDamageThreshHold3 && fallDistance < fallDamageThreshHold4)
             {
@@ -99,7 +90,6 @@ public class FallDamage : MonoBehaviour
                 Toolbox.instance.m_coins.hP -= fallDamage4;
                 Toolbox.instance.m_playerManager.boost -= boostPenalty4;
                 Debug.Log("Took fallDamage4");
-
             }
             else if (fallDistance > fallDamageThreshHold4)
             {
@@ -107,9 +97,6 @@ public class FallDamage : MonoBehaviour
                 Toolbox.instance.m_coins.hP -= fallDamage5;
                 Toolbox.instance.m_playerManager.boost -= boostPenalty5;
                 Debug.Log("Took fallDamage5");
-
             }
-         
     }
-    
 }
