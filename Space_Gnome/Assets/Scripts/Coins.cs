@@ -7,9 +7,10 @@ public class Coins : MonoBehaviour
 {
     [Header("Main Coin Variables")]
 
+    public int points;
     public int hP;
     public float time;
-    public int points;
+    public float totalTime;
 
     public bool gotAPoint;
     public bool gotAHP;
@@ -32,7 +33,11 @@ public class Coins : MonoBehaviour
     [SerializeField] int totalHealthCoinsCollected;
     [SerializeField] int totalPointsCoinsCollected;
 
+    private void Awake()
+    {
+        points= 0;
 
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -68,7 +73,8 @@ public class Coins : MonoBehaviour
                 Toolbox.instance.m_audio.timeCoin.Play();
                 Destroy(collision.gameObject);
 
-                totalTimeCoinsCollected += 1;
+            totalTimeCoinsCollected += 1;
+
             if (totalTimeCoinsCollected <= 25) { Toolbox.instance.m_timer.timerTime += timeBonus; }
             else if (totalTimeCoinsCollected > 25 && totalTimeCoinsCollected <= 50) { Toolbox.instance.m_timer.timerTime += timeBonus2; }
             else if (totalTimeCoinsCollected > 50 && totalTimeCoinsCollected <= 100) { Toolbox.instance.m_timer.timerTime += timeBonus3; }
@@ -95,10 +101,11 @@ public class Coins : MonoBehaviour
     private void Update()
     {
         if (points <= 0) { points = 0; }
-        if (hP <= 0) { Toolbox.instance.m_playerManager.GameOver(); }
-        time = Toolbox.instance.m_timer.timerTime;
+        time = Toolbox.instance.m_timer.startTime;
         hPText.text = hP.ToString();
         pointsText.text = points.ToString();
+        if (hP <= 0) { Toolbox.instance.m_playerManager.GameOver(); }
+       
     }
 }
 

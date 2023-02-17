@@ -25,15 +25,21 @@ public class UI_Manager : MonoBehaviour
 
     private void Awake()
     {
-      Time.timeScale = 0; 
-
+      Time.timeScale = 0;
+        previousHighScoreText.text = PlayerPrefs.GetFloat("PreviousHighScore").ToString("f0"); 
       input = new SGInput();
 
     if (!startPanel.activeInHierarchy)
     {
-       startPanel.SetActive(true);
+            startPanel.SetActive(true);
             gnome.SetActive(false);
     }
+    if (gameOverPanel.activeInHierarchy)
+        {
+            gameOverPanel.SetActive(false);
+            startPanel.SetActive(true);
+
+        }
 
         input.UI.Click.performed += ctx => StartButton();
 
@@ -66,12 +72,32 @@ public class UI_Manager : MonoBehaviour
                     gnome.SetActive(false);
                 }
             }
+
+            if (input.UI.Cancel.triggered)
+        {
+            if (gameOverPanel.gameObject.activeInHierarchy)
+            {
+               
+                RestartButton();
+                
+            }
+            if (startPanel.activeInHierarchy)
+            {
+                if (!gameOverPanel.activeInHierarchy)
+                {
+                    Quit();
+                }
+                else { return; }
+                
+            }
+        }
     }
    
     public void Quit()
     {
-        Application.Quit();
         Debug.Log("User quit.");
+        Application.Quit();
+        
     }
     public void StartButton()
     {
@@ -80,11 +106,13 @@ public class UI_Manager : MonoBehaviour
         {
             Time.timeScale = 1;
             startPanel.SetActive(false);
+            gnome.SetActive(true);
         }
        else if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
             startPanel.SetActive(true);
+            gnome.SetActive(false);
         }
         
     }
@@ -95,8 +123,9 @@ public class UI_Manager : MonoBehaviour
     public void RestartButton()
     {
         Toolbox.instance.m_playerManager.score = 0;
-        SceneManager.LoadScene(0);
         gameOverPanel.SetActive(false);
         startPanel.SetActive(true);
+        SceneManager.LoadScene(0);
+        
     }
 }

@@ -89,6 +89,51 @@ public partial class @SGInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BreakDance1990"",
+                    ""type"": ""Button"",
+                    ""id"": ""e5a621c0-8b7e-468d-a784-655f6bcdd669"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Headspin"",
+                    ""type"": ""Button"",
+                    ""id"": ""0cd05d28-3abb-4f97-9c8d-c71f775a4dc9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Uprock"",
+                    ""type"": ""Button"",
+                    ""id"": ""54cafb28-46a8-4bd4-8090-d39e32468f87"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RockDancing"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca94c662-8e4f-477c-a8cb-9e8279d694a1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DanceReady"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b5caf88-0832-43e8-8bac-f8ea5810786c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -353,6 +398,149 @@ public partial class @SGInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""258b7609-c1cb-46d1-ad42-9b7cf0d04d2e"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BreakDance1990"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""cbddb311-d918-4bd0-924f-8cb689c024ff"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""BreakDance1990"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""91026fe6-98c7-4d9f-8646-bd06ff0e982f"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""BreakDance1990"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""54315924-60d9-46e1-bc58-3ee5826c428f"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Headspin"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""3ca2da25-0cf4-48fe-b0d8-89e85f3ac9cb"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Headspin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""089e4811-d193-4434-8a56-97d73a845bd2"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Headspin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""c770a8a1-94b7-4717-bd08-92be6591c242"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Uprock"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""8c25fea2-880a-4479-ab1c-8975c3409f69"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Uprock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""9114b3fa-6b7f-4639-a1da-9f57fc0c52dc"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Uprock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""83583964-ee05-499f-a153-ba71340dcf91"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RockDancing"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""67f0784b-6d79-4d8d-89ab-5e18d82759e4"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RockDancing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""9346fa07-7059-47a9-8228-5e4909c4c6f2"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RockDancing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c9ebf1d-9406-48aa-89ed-a17ebe833640"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DanceReady"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -731,6 +919,17 @@ public partial class @SGInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""3137ebb5-eab3-40b2-9fab-a34cb068a676"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c52c8e0b-8179-41d3-b8a1-d149033bbe86"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
@@ -947,6 +1146,11 @@ public partial class @SGInput : IInputActionCollection2, IDisposable
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_FirePlatform = m_Player.FindAction("FirePlatform", throwIfNotFound: true);
         m_Player_Dance = m_Player.FindAction("Dance", throwIfNotFound: true);
+        m_Player_BreakDance1990 = m_Player.FindAction("BreakDance1990", throwIfNotFound: true);
+        m_Player_Headspin = m_Player.FindAction("Headspin", throwIfNotFound: true);
+        m_Player_Uprock = m_Player.FindAction("Uprock", throwIfNotFound: true);
+        m_Player_RockDancing = m_Player.FindAction("RockDancing", throwIfNotFound: true);
+        m_Player_DanceReady = m_Player.FindAction("DanceReady", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1025,6 +1229,11 @@ public partial class @SGInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_FirePlatform;
     private readonly InputAction m_Player_Dance;
+    private readonly InputAction m_Player_BreakDance1990;
+    private readonly InputAction m_Player_Headspin;
+    private readonly InputAction m_Player_Uprock;
+    private readonly InputAction m_Player_RockDancing;
+    private readonly InputAction m_Player_DanceReady;
     public struct PlayerActions
     {
         private @SGInput m_Wrapper;
@@ -1036,6 +1245,11 @@ public partial class @SGInput : IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @FirePlatform => m_Wrapper.m_Player_FirePlatform;
         public InputAction @Dance => m_Wrapper.m_Player_Dance;
+        public InputAction @BreakDance1990 => m_Wrapper.m_Player_BreakDance1990;
+        public InputAction @Headspin => m_Wrapper.m_Player_Headspin;
+        public InputAction @Uprock => m_Wrapper.m_Player_Uprock;
+        public InputAction @RockDancing => m_Wrapper.m_Player_RockDancing;
+        public InputAction @DanceReady => m_Wrapper.m_Player_DanceReady;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1066,6 +1280,21 @@ public partial class @SGInput : IInputActionCollection2, IDisposable
                 @Dance.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDance;
                 @Dance.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDance;
                 @Dance.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDance;
+                @BreakDance1990.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBreakDance1990;
+                @BreakDance1990.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBreakDance1990;
+                @BreakDance1990.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBreakDance1990;
+                @Headspin.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeadspin;
+                @Headspin.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeadspin;
+                @Headspin.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeadspin;
+                @Uprock.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUprock;
+                @Uprock.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUprock;
+                @Uprock.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUprock;
+                @RockDancing.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRockDancing;
+                @RockDancing.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRockDancing;
+                @RockDancing.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRockDancing;
+                @DanceReady.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDanceReady;
+                @DanceReady.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDanceReady;
+                @DanceReady.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDanceReady;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1091,6 +1320,21 @@ public partial class @SGInput : IInputActionCollection2, IDisposable
                 @Dance.started += instance.OnDance;
                 @Dance.performed += instance.OnDance;
                 @Dance.canceled += instance.OnDance;
+                @BreakDance1990.started += instance.OnBreakDance1990;
+                @BreakDance1990.performed += instance.OnBreakDance1990;
+                @BreakDance1990.canceled += instance.OnBreakDance1990;
+                @Headspin.started += instance.OnHeadspin;
+                @Headspin.performed += instance.OnHeadspin;
+                @Headspin.canceled += instance.OnHeadspin;
+                @Uprock.started += instance.OnUprock;
+                @Uprock.performed += instance.OnUprock;
+                @Uprock.canceled += instance.OnUprock;
+                @RockDancing.started += instance.OnRockDancing;
+                @RockDancing.performed += instance.OnRockDancing;
+                @RockDancing.canceled += instance.OnRockDancing;
+                @DanceReady.started += instance.OnDanceReady;
+                @DanceReady.performed += instance.OnDanceReady;
+                @DanceReady.canceled += instance.OnDanceReady;
             }
         }
     }
@@ -1254,6 +1498,11 @@ public partial class @SGInput : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnFirePlatform(InputAction.CallbackContext context);
         void OnDance(InputAction.CallbackContext context);
+        void OnBreakDance1990(InputAction.CallbackContext context);
+        void OnHeadspin(InputAction.CallbackContext context);
+        void OnUprock(InputAction.CallbackContext context);
+        void OnRockDancing(InputAction.CallbackContext context);
+        void OnDanceReady(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

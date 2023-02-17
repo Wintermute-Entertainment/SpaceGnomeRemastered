@@ -17,28 +17,36 @@ public class PlayerManager : MonoBehaviour
     [Header("Boost Variables")]
     public float boost;
     [SerializeField] float defaultBoost;
+    [SerializeField] float defaultScore;
     public TMP_Text boostText;
     [SerializeField] float boostCap;
 
     private void Awake()
     {
+        defaultScore = 0;
         boost = defaultBoost;
+        score = defaultScore;
     }
     public void GameOver()
     {   Toolbox.instance.m_uIManager.finalScoreText.text = score.ToString("f0");
-        Toolbox.instance.m_uIManager.gameOverPanel.SetActive(true);
-
-        if (Toolbox.instance.m_highScores.currentHighScore > float.Parse(Toolbox.instance.m_uIManager.previousHighScoreText.text))
+        if (score > 1)
         {
-            Toolbox.instance.m_highScores.currentHighScore = score;
-            PlayerPrefs.SetFloat("HighScore", score);
+            score = Toolbox.instance.m_highScores.newScore;
         }
-        player.SetActive(false);
-        //Toolbox.instance.m_uIManager.finalScoreText.text = score.ToString("f0");
-        Toolbox.instance.m_highScores.newScore = score;
-        Toolbox.instance.m_uIManager.highScoreText.text = PlayerPrefs.GetFloat("HighScore", 0).ToString("f0");
+        
+
+
+        if (Toolbox.instance.m_highScores.newScore > PlayerPrefs.GetFloat("HighScore"))//float.Parse(Toolbox.instance.m_uIManager.previousHighScoreText.text))
+            {
+                Toolbox.instance.m_highScores.currentHighScore = score;
+                PlayerPrefs.SetFloat("HighScore", score);
+            }
+
+        Toolbox.instance.m_uIManager.gameOverPanel.SetActive(true);
+        Toolbox.instance.m_uIManager.highScoreText.text = PlayerPrefs.GetFloat("HighScore").ToString("f0");
         Debug.Log("Game over, man!");
         Debug.Log("Score was " + score + " at Game Over.");
+       
     }
     private void Update()
     {
