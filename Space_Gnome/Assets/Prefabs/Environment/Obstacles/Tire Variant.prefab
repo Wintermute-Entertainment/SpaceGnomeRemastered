@@ -16,17 +16,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a1e6cc0a7f6012544a249c960c4e1173,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1e6cc0a7f6012544a249c960c4e1173,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1e6cc0a7f6012544a249c960c4e1173,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1e6cc0a7f6012544a249c960c4e1173,
         type: 3}
@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tire Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a1e6cc0a7f6012544a249c960c4e1173,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -91,6 +96,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6401664362272045698}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1e6cc0a7f6012544a249c960c4e1173,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6579761296262861194}
   m_SourcePrefab: {fileID: 100100000, guid: a1e6cc0a7f6012544a249c960c4e1173, type: 3}
 --- !u!1 &897541212919550232 stripped
 GameObject:
@@ -117,6 +126,27 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 548590712551798673, guid: a1e6cc0a7f6012544a249c960c4e1173, type: 3}
+--- !u!65 &6579761296262861194
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897541212919550232}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.473836, y: 1.4369173, z: 0.444254}
+  m_Center: {x: 0.0050114794, y: 0.02871716, z: 0.0020387562}

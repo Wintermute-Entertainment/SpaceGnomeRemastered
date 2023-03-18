@@ -74,10 +74,10 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 55261.973
   aerosolDensity:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.387
   aerosolTint:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {r: 0.4690281, g: 0.7804868, b: 0.8773585, a: 1}
   aerosolMaximumAltitude:
     m_OverrideState: 1
@@ -89,7 +89,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 8
   groundTint:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {r: 0.07903165, g: 0.33962262, b: 0.11366966, a: 1}
   groundColorTexture:
     m_OverrideState: 0
@@ -215,13 +215,31 @@ MonoBehaviour:
     m_Value: 64
   m_VolumetricFogBudget:
     m_OverrideState: 1
-    m_Value: 0.75
+    m_Value: 0.666
   m_ResolutionDepthRatio:
     m_OverrideState: 1
     m_Value: 0.5
   directionalLightsOnly:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &-3675205798443784282
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
+  m_Name: DiffusionProfileList
+  m_EditorClassIdentifier: 
+  active: 0
+  diffusionProfiles:
+    m_OverrideState: 1
+    m_Value:
+    - {fileID: 11400000, guid: b243efd908b6bb04ab1c27b3f513b816, type: 2}
+    - {fileID: 11400000, guid: 4521882d9ab423d44885de46ca986b30, type: 2}
 --- !u!114 &-966878192550363051
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -236,13 +254,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   opacity:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0.886
   upperHemisphereOnly:
     m_OverrideState: 0
     m_Value: 1
   layers:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   resolution:
     m_OverrideState: 0
@@ -404,6 +422,7 @@ MonoBehaviour:
   - {fileID: 7642060734654139733}
   - {fileID: -966878192550363051}
   - {fileID: 6949811374065600280}
+  - {fileID: -3675205798443784282}
 --- !u!114 &1142777632297148762
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -416,16 +435,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7593b3a9277ac4696b20006c21dde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   skyType:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   cloudType:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   skyAmbientMode:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 0
   windOrientation:
     m_OverrideState: 0
     m_Value: 0
@@ -447,25 +466,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b6606ef2548734bb6d11b9d160bc7e, type: 3}
   m_Name: HDRISky
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   rotation:
     m_OverrideState: 0
-    m_Value: 69
+    m_Value: 29
   skyIntensityMode:
     m_OverrideState: 0
     m_Value: 0
   exposure:
     m_OverrideState: 0
-    m_Value: 8.95
+    m_Value: 15
   multiplier:
     m_OverrideState: 0
     m_Value: 1
   upperHemisphereLuxValue:
     m_OverrideState: 1
-    m_Value: 0.34527472
+    m_Value: 0.06377846
   upperHemisphereLuxColor:
     m_OverrideState: 1
-    m_Value: {x: 0.5, y: 0.37429184, z: 0.41423005}
+    m_Value: {x: 0.5, y: 0.14010729, z: 0.17319833}
   desiredLuxValue:
     m_OverrideState: 0
     m_Value: 20000
@@ -480,10 +499,10 @@ MonoBehaviour:
     m_Value: 0
   hdriSky:
     m_OverrideState: 1
-    m_Value: {fileID: 8900000, guid: e182270a7e5501a429a3797b5e8dcc8e, type: 2}
+    m_Value: {fileID: 8900000, guid: 65eca0a1f42c0e74ab41547d21788ff4, type: 3}
   distortionMode:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 0
   flowmap:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -491,11 +510,11 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   scrollOrientation:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
       mode: 1
-      customValue: 0
-      additiveValue: 0
+      customValue: 87
+      additiveValue: 1.6
       multiplyValue: 1
   scrollSpeed:
     m_OverrideState: 0
@@ -571,7 +590,7 @@ MonoBehaviour:
   active: 0
   mode:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 1
   meteringMode:
     m_OverrideState: 0
     m_Value: 2
@@ -582,14 +601,14 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   compensation:
-    m_OverrideState: 1
-    m_Value: 5.1
+    m_OverrideState: 0
+    m_Value: 3
   limitMin:
-    m_OverrideState: 1
-    m_Value: 0.7818847
+    m_OverrideState: 0
+    m_Value: 11.054554
   limitMax:
-    m_OverrideState: 1
-    m_Value: 7
+    m_OverrideState: 0
+    m_Value: 11.166941
   curveMap:
     m_OverrideState: 0
     m_Value:

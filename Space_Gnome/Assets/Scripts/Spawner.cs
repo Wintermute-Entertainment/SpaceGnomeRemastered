@@ -149,7 +149,8 @@ public class Spawner : MonoBehaviour
 
             isColliding = true;
             GameObject clone = Instantiate(objectInstantiator, spawnedSpawnerParentTransform, true);
-            objectInstantiator.SetActive(false);
+            //objectInstantiator.SetActive(false);
+            Destroy(objectInstantiator);        //BIG CHANGE...CAUSING PROBLEMS?
             clone.transform.Translate(new Vector3(0, spawnerSpawnDistance, 0), Space.World);
 
             for (i = 0; i <= maxSpawnerCount; i++) ;
