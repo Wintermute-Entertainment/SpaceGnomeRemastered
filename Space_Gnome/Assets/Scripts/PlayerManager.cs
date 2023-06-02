@@ -8,7 +8,7 @@ using DG.Tweening;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    
+
     [Header("Basic Variables")]
     public int hP;
     public float time;
@@ -21,29 +21,46 @@ public class PlayerManager : MonoBehaviour
     public TMP_Text boostText;
     [SerializeField] float boostCap;
 
+   public static HighScores m_highScores;
+
+    public TMP_Text pointsCoinsCollectedText;
+    public TMP_Text hPCoinsCollectedText;
+    public TMP_Text timeCoinsCollectedText;
+
+
     private void Awake()
     {
         defaultScore = 0;
         boost = defaultBoost;
         score = defaultScore;
+        
     }
     public void GameOver()
-    {   Toolbox.instance.m_uIManager.finalScoreText.text = score.ToString("f0");
-        if (score > 1)
+    { 
+        player.SetActive(false);
+
+        if (Toolbox.instance.m_highScores.newScore > (PlayerPrefs.GetFloat("HighScore")))
         {
-            score = Toolbox.instance.m_highScores.newScore;
+            Toolbox.instance.m_highScores.previousHighScore = PlayerPrefs.GetFloat("HighScore");
+            PlayerPrefs.SetFloat("PreviousHighScore", Toolbox.instance.m_highScores.previousHighScore);
+            PlayerPrefs.SetFloat("HighScore", Toolbox.instance.m_highScores.newScore);
         }
+
+        pointsCoinsCollectedText.text = Toolbox.instance.m_coins.totalPointsCoinsCollected.ToString();
+        hPCoinsCollectedText.text = Toolbox.instance.m_coins.totalHealthCoinsCollected.ToString();
+        timeCoinsCollectedText.text = Toolbox.instance.m_coins.totalTimeCoinsCollected.ToString();
+
+        if (Toolbox.instance.m_uIManager.finalScoreText.text != null) 
+        {
+            Toolbox.instance.m_uIManager.finalScoreText.text = score.ToString("f0");
+        }
+
         
-
-
-        if (Toolbox.instance.m_highScores.newScore > PlayerPrefs.GetFloat("HighScore"))//float.Parse(Toolbox.instance.m_uIManager.previousHighScoreText.text))
-            {
-                Toolbox.instance.m_highScores.currentHighScore = score;
-                PlayerPrefs.SetFloat("HighScore", score);
-            }
+          
 
         Toolbox.instance.m_uIManager.gameOverPanel.SetActive(true);
         Toolbox.instance.m_uIManager.highScoreText.text = PlayerPrefs.GetFloat("HighScore").ToString("f0");
+        Toolbox.instance.m_uIManager.previousHighScoreText.text = PlayerPrefs.GetFloat("PreviousHighScore").ToString("f0");
         Debug.Log("Game over, man!");
         Debug.Log("Score was " + score + " at Game Over.");
        
@@ -61,6 +78,6 @@ public class PlayerManager : MonoBehaviour
         }
         if (boost<= 0) { boost= 0; }
 
-        score = points + (hP / 2) * Time.time;
+        score = (points + (hP / 2)) * Time.time;
     }
 }

@@ -65,7 +65,7 @@
                     "id": "f4ab9abb-dcee-4ac7-8bc6-3d6ddc6e2c95",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -75,7 +75,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Headspin",
@@ -84,7 +84,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Uprock",
@@ -93,7 +93,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "RockDancing",
@@ -102,12 +102,48 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "DanceReady",
                     "type": "Button",
                     "id": "4b5caf88-0832-43e8-8bac-f8ea5810786c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Flair",
+                    "type": "Button",
+                    "id": "de12a101-1db2-47ee-8e38-5af93098dec2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HipHopDancing",
+                    "type": "Button",
+                    "id": "43a1cd5c-26d0-43a7-9ef8-51b894812e6b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SillyDancing",
+                    "type": "Button",
+                    "id": "6c5210ba-a99a-49b5-81c2-a5a633c22dbf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BreakDanceEnding1",
+                    "type": "Button",
+                    "id": "398209be-3bf5-465e-ba47-e2f958db8bd2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -359,9 +395,20 @@
                 },
                 {
                     "name": "",
+                    "id": "394653f3-b7d1-4230-a98a-b31f8c7a9157",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirePlatform",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "05358d64-087f-4db0-b0b5-c22afe3f337c",
                     "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
+                    "interactions": "Tap(pressPoint=0.4)",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Dance",
@@ -372,7 +419,7 @@
                     "name": "",
                     "id": "74f2fd6c-e95f-4650-a85c-708e1f1fa520",
                     "path": "<Keyboard>/ctrl",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Dance",
@@ -380,145 +427,200 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "One Modifier",
-                    "id": "258b7609-c1cb-46d1-ad42-9b7cf0d04d2e",
-                    "path": "OneModifier",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "BreakDance1990",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "cbddb311-d918-4bd0-924f-8cb689c024ff",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
+                    "name": "",
+                    "id": "2ba33eb5-48c6-4255-8462-fc3895f6690a",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "BreakDance1990",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "binding",
-                    "id": "91026fe6-98c7-4d9f-8646-bd06ff0e982f",
+                    "name": "",
+                    "id": "6ab6bc93-875e-4dfa-96e2-284ce2c23bef",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "BreakDance1990",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a05b2cb4-2131-466f-82dc-29045c4e47a2",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Headspin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac67894a-b0d4-4a1c-8dc6-1d1dcf7e9920",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Headspin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0bf1600-995c-4687-9c8d-52e02632ede7",
                     "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "BreakDance1990",
+                    "action": "Uprock",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "One Modifier",
-                    "id": "54315924-60d9-46e1-bc58-3ee5826c428f",
-                    "path": "OneModifier",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Headspin",
-                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier",
-                    "id": "3ca2da25-0cf4-48fe-b0d8-89e85f3ac9cb",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
+                    "name": "",
+                    "id": "8de21163-759e-4cf8-8605-96ee41cd6220",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Headspin",
+                    "action": "RockDancing",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "binding",
-                    "id": "089e4811-d193-4434-8a56-97d73a845bd2",
+                    "name": "",
+                    "id": "b6991bdc-cd69-4075-ae79-d22576935224",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "RockDancing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0eb465f0-34da-4c79-b65f-22e4e95aa90a",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DanceReady",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd927fb0-c94f-47f0-8a33-c7eb4b045661",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DanceReady",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b0ff3c69-24a3-4524-825e-77c00687a83a",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Flair",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e58d495c-f71f-4aab-ae46-d8c2f7fcfc86",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Flair",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ff6b2bf-1960-41ed-98fb-e081f52d805a",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "HipHopDancing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a5773d9-b5ae-4409-a6c3-0b7f832b3269",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SillyDancing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3514f399-c77c-4a99-a620-25787ff976b2",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Headspin",
+                    "action": "BreakDanceEnding1",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "One Modifier",
-                    "id": "c770a8a1-94b7-4717-bd08-92be6591c242",
-                    "path": "OneModifier",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Uprock",
-                    "isComposite": true,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "8c25fea2-880a-4479-ab1c-8975c3409f69",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Uprock",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "9114b3fa-6b7f-4639-a1da-9f57fc0c52dc",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Uprock",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "One Modifier",
-                    "id": "83583964-ee05-499f-a153-ba71340dcf91",
-                    "path": "OneModifier",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RockDancing",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "67f0784b-6d79-4d8d-89ab-5e18d82759e4",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "RockDancing",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "9346fa07-7059-47a9-8228-5e4909c4c6f2",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "RockDancing",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "1c9ebf1d-9406-48aa-89ed-a17ebe833640",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "Press",
+                    "id": "f50500c5-ea3e-4b7b-a7d7-ab8a74c1763a",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "DanceReady",
+                    "groups": "Keyboard&Mouse",
+                    "action": "HipHopDancing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1dea4d9-9ca1-475a-8ad2-551101dcbed3",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SillyDancing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8cc8b73c-4d29-41d3-a757-dad009d96c11",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "BreakDanceEnding1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46091aad-43ac-4833-9b5a-bc915dce3d7c",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Uprock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -883,17 +985,6 @@
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "82627dcc-3b13-4ba9-841d-e4b746d6553e",
-                    "path": "*/{Cancel}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
-                    "action": "Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

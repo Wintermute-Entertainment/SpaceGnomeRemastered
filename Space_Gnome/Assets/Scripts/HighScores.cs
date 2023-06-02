@@ -9,22 +9,23 @@ public class HighScores : MonoBehaviour
     public float previousHighScore;
     private void Awake()
     {
-        //currentHighScore = PlayerPrefs.GetFloat("HighScore");
-      
+
+        currentHighScore = PlayerPrefs.GetFloat("HighScore",0);
+        newScore = 0;
     }
 
 
     private void Update()
     {
+        newScore = Toolbox.instance.m_playerManager.score;
         
-        if (newScore > (PlayerPrefs.GetFloat("HighScore")))
-        {
-            previousHighScore = PlayerPrefs.GetFloat("HighScore");
-            PlayerPrefs.SetFloat("PreviousHighScore", previousHighScore);
-            PlayerPrefs.SetFloat("HighScore", newScore);
-        }
-        Toolbox.instance.m_uIManager.highScoreText.text = PlayerPrefs.GetFloat("HighScore").ToString("f0");
-        Toolbox.instance.m_uIManager.previousHighScoreText.text = PlayerPrefs.GetFloat("PreviousHighScore").ToString("f0");
+        //if (newScore > (PlayerPrefs.GetFloat("HighScore")))
+        //{
+        //    previousHighScore = PlayerPrefs.GetFloat("HighScore");
+        //    PlayerPrefs.SetFloat("PreviousHighScore", previousHighScore);
+        //    PlayerPrefs.SetFloat("HighScore", newScore);
+        //}
+        
     }
 
 }

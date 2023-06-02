@@ -90,6 +90,10 @@ public class Spawner : MonoBehaviour
         Vector3 asteroidPosition = new Vector3(randomPos.x, randomPos.y, randomPos.z);
         asteroidFirePoint.transform.position = playerPrefab.transform.position + asteroidPosition;
         if (clonedAsteroid != null) { clonedAsteroid.transform.RotateAround(rotationCenter.position, Random.Range(0, 361)); }
+
+        if (playerPrefab.transform.position.y < objectInstantiator.transform.position.y) { 
+                objectInstantiator.transform.Translate((objectInstantiator.transform.position.y - playerPrefab.transform.position.y - 1) * Time.deltaTime * Vector3.down);
+        }
     }
     void SpawnObject()
     {
@@ -149,7 +153,8 @@ public class Spawner : MonoBehaviour
 
             isColliding = true;
             GameObject clone = Instantiate(objectInstantiator, spawnedSpawnerParentTransform, true);
-            objectInstantiator.SetActive(false);
+            //objectInstantiator.SetActive(false);
+            Destroy(objectInstantiator);        //BIG CHANGE...CAUSING PROBLEMS?
             clone.transform.Translate(new Vector3(0, spawnerSpawnDistance, 0), Space.World);
 
             for (i = 0; i <= maxSpawnerCount; i++) ;

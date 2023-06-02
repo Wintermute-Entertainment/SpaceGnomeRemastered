@@ -111,8 +111,8 @@ MonoBehaviour:
   diffusionProfiles:
     m_OverrideState: 1
     m_Value:
-    - {fileID: 11400000, guid: 48e911a1e337b44e2b85dbc65b47a594, type: 2}
-    - {fileID: 11400000, guid: 879ffae44eefa4412bb327928f1a96dd, type: 2}
+    - {fileID: 11400000, guid: 7f3f9048c5f50234d99ef9312bd68d6a, type: 2}
+    - {fileID: 11400000, guid: 6cf8d99842f8e3a4c8ea3ff0923e92f3, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,10 +163,10 @@ MonoBehaviour:
     m_Value: 1
   upperHemisphereLuxValue:
     m_OverrideState: 1
-    m_Value: 0.4660715
+    m_Value: 0.46607146
   upperHemisphereLuxColor:
     m_OverrideState: 1
-    m_Value: {x: 0.18750614, y: 0.29181972, z: 0.5}
+    m_Value: {x: 0.18750615, y: 0.29181966, z: 0.5}
   desiredLuxValue:
     m_OverrideState: 0
     m_Value: 20000

@@ -9,7 +9,9 @@ public class FloorCollider : MonoBehaviour
     public bool isStanding;
 
     [SerializeField] Rigidbody floorColliderRB;
-    public void OnCollisionEnter(UnityEngine.Collision collision)
+
+ 
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
@@ -17,11 +19,11 @@ public class FloorCollider : MonoBehaviour
             isStanding = true;
             Debug.Log("Started standing...");
             m_gnomeMovement.ResetStates();
-            m_gnomeMovement.gravity = m_gnomeMovement.defaultGravity;
+          // m_gnomeMovement.gravity = m_gnomeMovement.defaultGravity;
         }
-        // else if(!collision.gameObject.CompareTag("Floor")) { isStanding = false; }
+        else if(!collision.gameObject.CompareTag("Floor")) { isStanding = false; }
     }
-    public void OnCollisionExit(UnityEngine.Collision collision)
+    public void OnCollisionExit(Collision collision)
     {
 
         if (collision.gameObject.CompareTag("Floor"))
@@ -39,7 +41,7 @@ public class FloorCollider : MonoBehaviour
                 m_gnomeMovement.isDancing = false;
 
             }
-            else if (!m_gnomeMovement.isJumping)
+            else if (m_gnomeMovement.isJumping==false)
             {
                 isStanding = false;
                 Debug.Log("Started FallingIdle...");
@@ -61,21 +63,21 @@ public class FloorCollider : MonoBehaviour
     }
     private void Update()
     {
-        if (player.transform.position.y - transform.position.y >= 2)
+        if (player.transform.position.y - transform.position.y >= 1)
         {
-            transform.Translate(Vector3.up, Space.Self );
+            transform.Translate(Vector3.up, Space.Self);
             Debug.Log("Updated Floor Collider Y position.");
         }
 
-      
-        
-        
+
+
+
     }
 
     private void FixedUpdate()
     {
-       // Debug.Log("Updated Floor Collider Y velocity from " + floorColliderRB.velocity.y + " to zero in Fixed Update.");
-        floorColliderRB.velocity.Set(0, 0, 0);
+        Debug.Log("Updated Floor Collider Y velocity from " + floorColliderRB.velocity.y + " to zero in Fixed Update.");
+        floorColliderRB.velocity = Vector3.zero; 
     }
 
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3336673080565449784}
   - component: {fileID: 696590321460883698}
   - component: {fileID: 1725172991525891986}
-  - component: {fileID: 2124484944143485778}
+  - component: {fileID: -4762749825146382445}
   m_Layer: 0
   m_Name: Pylon
   m_TagString: Floor
@@ -112,7 +112,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 2
---- !u!65 &2124484944143485778
+--- !u!65 &-4762749825146382445
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

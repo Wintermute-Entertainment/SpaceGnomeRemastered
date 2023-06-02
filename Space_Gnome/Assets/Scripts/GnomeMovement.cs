@@ -31,6 +31,13 @@ public class GnomeMovement : MonoBehaviour
     public bool isUprock;
     public bool isRockDancing;
 
+    public bool isFlair;
+    public bool isHipHopDancing;
+    public bool isSillyDancing;
+    public bool isBreakDanceEnding1;
+
+    private bool hasTransitionedToDanceReady = false;
+
     //Fall Damage Booleans
 
     public bool startedStanding;
@@ -70,6 +77,9 @@ public class GnomeMovement : MonoBehaviour
     public Vector3 jumpHeight;
     [SerializeField] int boostJumpCost;
     [SerializeField] int boostDanceBonus;
+
+    //Combos
+    public int comboCount;
 
     [Header("Cameras")]
 
@@ -128,7 +138,13 @@ public class GnomeMovement : MonoBehaviour
         player1Controls.Player.Headspin.performed += ctx => Headspin();
         player1Controls.Player.Uprock.performed += ctx => Uprock();
         player1Controls.Player.RockDancing.performed += ctx => RockDancing();
-        
+
+        player1Controls.Player.Flair.performed += ctx => Flair();
+        player1Controls.Player.HipHopDancing.performed += ctx => HipHopDancing();
+        player1Controls.Player.SillyDancing.performed += ctx => SillyDancing();
+        player1Controls.Player.BreakDanceEnding1.performed += ctx => BreakDanceEnding1();
+
+        isFallingIdle = true;
     }
 
 
@@ -148,7 +164,7 @@ public class GnomeMovement : MonoBehaviour
 
         transform.LookAt(lookAtPosition);
     }
-  public void ResetStates()  //Used to turn off all animations.
+    public void ResetStates()  //Used to turn off all animations.
     {
         StopIdle();
         StopWalk();
@@ -164,33 +180,86 @@ public class GnomeMovement : MonoBehaviour
         StopUprock();
         StopRockDancing();
         StopDanceReady();
+
+        StopFlair();
+        StopHipHopDancing();
+        StopSillyDancing();
+        StopBreakDanceEnding1();
+
+        //player1Animator.ResetTrigger("Flair");
+        //player1Animator.ResetTrigger("HipHopDancing");
+        //player1Animator.ResetTrigger("SillyDancing");
+        //player1Animator.ResetTrigger("BreakDanceEnding1");
+
+        hasTransitionedToDanceReady= false;
     }
 
     // ANIMATION STATES:
 
     void DanceReady()
     {
+        ResetStates();
+        if (!hasTransitionedToDanceReady) { hasTransitionedToDanceReady= true; }
+       // player1Animator.SetBool("isDanceReady", true); isDanceReady = true;
+        Debug.Log("DanceReady() called.");
 
-        player1Animator.SetBool("isDanceReady", true);
-        if (isStanding)
-        {
+       
+        
             if (player1Controls.Player.BreakDance1990.triggered)
             {
-                BreakDance1990();
-            }
+                
+                if (player1Controls.Player.Flair.triggered) { Flair(); }
+                else if (player1Controls.Player.HipHopDancing.triggered) { HipHopDancing(); }
+                else if (player1Controls.Player.SillyDancing.triggered) { SillyDancing(); }
+                else if (player1Controls.Player.BreakDanceEnding1.triggered) { BreakDanceEnding1(); }
+                else { BreakDance1990(); }
+        }
             else if (player1Controls.Player.Headspin.triggered)
             {
-                Headspin();
-            }
+                
+                if (player1Controls.Player.Flair.triggered) { Flair(); }
+                else if (player1Controls.Player.HipHopDancing.triggered) { HipHopDancing(); }
+                else if (player1Controls.Player.SillyDancing.triggered) { SillyDancing(); }
+                else if (player1Controls.Player.BreakDanceEnding1.triggered) { BreakDanceEnding1(); }
+                else { Headspin(); }
+        }
             else if (player1Controls.Player.Uprock.triggered)
             {
-                Uprock();
-            }
+                
+                if (player1Controls.Player.Flair.triggered) { Flair(); }
+                else if (player1Controls.Player.HipHopDancing.triggered) { HipHopDancing(); }
+                else if (player1Controls.Player.SillyDancing.triggered) { SillyDancing(); }
+                else if (player1Controls.Player.BreakDanceEnding1.triggered) { BreakDanceEnding1(); }
+                else { Uprock(); }
+        }
             else if (player1Controls.Player.RockDancing.triggered)
             {
-                RockDancing();
-            }
+                
+                if (player1Controls.Player.Flair.triggered) { Flair(); }
+                else if (player1Controls.Player.HipHopDancing.triggered) { HipHopDancing(); }
+                else if (player1Controls.Player.SillyDancing.triggered) { SillyDancing(); }
+                else if (player1Controls.Player.BreakDanceEnding1.triggered) { BreakDanceEnding1(); }
+                else { RockDancing(); }
         }
+            else if (player1Controls.Player.Flair.triggered) { Flair(); }
+            else if (player1Controls.Player.HipHopDancing.triggered) { HipHopDancing(); }
+            else if (player1Controls.Player.SillyDancing.triggered) { SillyDancing(); }
+            else if (player1Controls.Player.BreakDanceEnding1.triggered) { BreakDanceEnding1(); }
+
+            else if (isBreakDance1990) { BreakDance1990(); }
+            else if (isHeadspin) { Headspin(); }
+            else if (isUprock) { Uprock(); }
+            else if (isRockDancing) { RockDancing(); }
+
+            else if (isFlair) { Flair(); }
+            else if (isHipHopDancing) { HipHopDancing(); }
+            else if (isSillyDancing) { SillyDancing(); }
+            else if (isBreakDanceEnding1) { BreakDanceEnding1(); }
+
+            else if (isDancing) { Dance(); }
+            else if (!isDanceReady) { player1Animator.SetBool("isDanceReady", true); isDanceReady = true; Debug.Log("Started DanceReady."); }
+        
+        else { FallingIdle(); }
 
     }
     void StopDanceReady()
@@ -200,11 +269,11 @@ public class GnomeMovement : MonoBehaviour
     }
     void BreakDance1990()
     {
-        //ResetStates();
-      
-            player1Animator.SetBool("BreakDance1990", true);
-            isBreakDance1990 = true;
-        
+        ResetStates();
+
+        player1Animator.SetBool("BreakDance1990", true);
+        isBreakDance1990 = true;
+
     }
     void StopBreakDance1990()
     {
@@ -228,27 +297,81 @@ public class GnomeMovement : MonoBehaviour
     }
     void Headspin()
     {
-        //ResetStates();
-        
-            player1Animator.SetBool("Headspin", true);
-            isHeadspin = true;
-        
+        ResetStates();
+
+        player1Animator.SetBool("Headspin", true);
+        isHeadspin = true;
+
     }
     void Uprock()
     {
-        //ResetStates();
-        
-            player1Animator.SetBool("Uprock", true);
-            isUprock = true;
-       
+        ResetStates();
+
+        player1Animator.SetBool("Uprock", true);
+        isUprock = true;
+
     }
     void RockDancing()
     {
-        //ResetStates();
-       
-            player1Animator.SetBool("RockDancing", true);
-            isRockDancing = true;
-        
+
+        ResetStates();
+        player1Animator.SetBool("RockDancing", true);
+        isRockDancing = true;
+    }
+
+    void Flair()
+    {
+        ResetStates();
+
+        player1Animator.SetBool("isFlair", true);
+        isFlair = true;
+        Debug.Log("Flair triggered.");
+    }
+    void HipHopDancing()
+    {
+        ResetStates();
+
+        player1Animator.SetBool("isHipHopDancing", true);
+        isHipHopDancing = true;
+        Debug.Log("HipHopDancing triggered.");
+    }
+    void SillyDancing()
+    {
+        ResetStates();
+
+        player1Animator.SetBool("isSillyDancing", true);
+        isSillyDancing = true;
+        Debug.Log("SillyDancing triggered.");
+    }
+    void BreakDanceEnding1()
+    {
+        ResetStates();
+
+        player1Animator.SetBool("isBreakDanceEnding1", true);
+        isBreakDanceEnding1 = true;
+        Debug.Log("BreakDanceEnding1 triggered.");
+    }
+
+    void StopFlair()
+    {
+        player1Animator.SetBool("isFlair", false);
+        isFlair = false;
+    }
+    void StopHipHopDancing()
+    {
+        player1Animator.SetBool("isHipHopDancing", false);
+        isHipHopDancing = false;
+    }
+    void StopSillyDancing()
+    {
+        player1Animator.SetBool("isSillyDancing", false);
+        isSillyDancing = false;
+    }
+    void StopBreakDanceEnding1()
+    {
+
+        player1Animator.SetBool("isBreakDanceEnding1", false);
+        isBreakDanceEnding1 = false;
     }
     public IEnumerator WaitOneSecond(float timeToWait)
     {
@@ -259,37 +382,38 @@ public class GnomeMovement : MonoBehaviour
     {
         if (!isFallingIdle)
         {
-            ResetStates();
             player1Animator.SetBool("isDancing", true);
             isDancing = true;
             Toolbox.instance.m_playerManager.boost += boostDanceBonus;
         }
+        StartCoroutine(WaitOneSecond(1));
 
-      
+        if (player1Controls.Player.DanceReady.triggered) { DanceReady(); }
+
     }
     void FixedUpdate()
     {
-        //Switch from Dancing to DanceReady states on player input if already in Dancing state.
 
-        if (player1Controls.Player.DanceReady.triggered && isDancing)
-        {
-            isDanceReady = true;
-            isDancing = false;
-            StartCoroutine(WaitOneSecond(1f));
-        }
         // SET VELOCITY TO 0 IF NO PLAYER INPUT
 
         if (!player1Controls.Player.Move.inProgress && !player1Controls.Player.Jump.inProgress && !player1Controls.Player.FirePlatform.inProgress
-             && !player1Controls.Player.Run.inProgress && !player1Controls.Player.Dance.inProgress) { playerRB.velocity.Set(0, 0, 0); playerRB.useGravity = false; }
+             && !player1Controls.Player.Run.inProgress && !player1Controls.Player.Dance.inProgress && !player1Controls.Player.DanceReady.inProgress
+             && !player1Controls.Player.BreakDance1990.inProgress && !player1Controls.Player.Headspin.inProgress && !player1Controls.Player.Uprock.inProgress
+             && !player1Controls.Player.RockDancing.inProgress && !player1Controls.Player.Flair.inProgress && !player1Controls.Player.HipHopDancing.inProgress
+             && !player1Controls.Player.SillyDancing.inProgress && !player1Controls.Player.BreakDanceEnding1.inProgress) { playerRB.velocity.Set(0, 0, 0); playerRB.useGravity = false; }
 
-        //Add downforce to RB when player Y velocity is above threshold and in falling state.
+    }
+    void StopJumping()
+    {
+        player1Animator.SetBool("isJumping", false);
+        isJumping = false;
+    }
+    //UPDATE
+    void Update()
+    {
 
-        //if (playerRB.velocity.y >= velocityThreshhold && isFallingIdle)
-
-        //{
-        //    playerRB.AddForce(fallSpeed * gravity * Time.deltaTime * Vector3.down);
-        //}
-
+        HandleMovement();
+        HandleRotation();
         //Move transform down when in falling state.
 
         if (isFallingIdle)
@@ -299,15 +423,298 @@ public class GnomeMovement : MonoBehaviour
 
         else if (isWalking) { Walk(); }
         else if (isSprinting) { Run(); }
-        else if (isJumping) { Jump(); }
-        else if (isDancing) { Dance(); }
-        else if (isDanceReady) { DanceReady(); }
-        else if (isBreakDance1990) { BreakDance1990(); }
+        //else if (isJumping) { Jump(); }
+       else if (isStanding) { ResetStates(); }
+
+        //DANCE MOVE PREREQUISITE STATES
+        else if (player1Controls.Player.Dance.triggered) { Dance(); }
+        else if (player1Controls.Player.DanceReady.triggered) { DanceReady(); }
+        else if (player1Controls.Player.BreakDance1990.triggered)
+        {
+
+            if (player1Controls.Player.Flair.triggered) { ResetStates(); Flair(); }
+            else if (player1Controls.Player.HipHopDancing.triggered) { ResetStates(); HipHopDancing(); }
+            else if (player1Controls.Player.SillyDancing.triggered) { ResetStates(); SillyDancing(); }
+            else if (player1Controls.Player.BreakDanceEnding1.triggered) { ResetStates(); BreakDanceEnding1(); }
+            else { BreakDance1990(); }
+        }
+        else if (player1Controls.Player.Headspin.triggered)
+        {
+
+            if (player1Controls.Player.Flair.triggered) { ResetStates(); Flair(); }
+            else if (player1Controls.Player.HipHopDancing.triggered) { ResetStates(); HipHopDancing(); }
+            else if (player1Controls.Player.SillyDancing.triggered) { ResetStates(); SillyDancing(); }
+            else if (player1Controls.Player.BreakDanceEnding1.triggered) { ResetStates(); BreakDanceEnding1(); }
+            else { Headspin(); }
+
+        }
+        else if (player1Controls.Player.Uprock.triggered)
+        {
+
+            if (player1Controls.Player.Flair.triggered) { ResetStates(); Flair(); }
+            else if (player1Controls.Player.HipHopDancing.triggered) { ResetStates(); HipHopDancing(); }
+            else if (player1Controls.Player.SillyDancing.triggered) { ResetStates(); SillyDancing(); }
+            else if (player1Controls.Player.BreakDanceEnding1.triggered) { ResetStates(); BreakDanceEnding1(); }
+            else { Uprock(); }
+        }
+        else if (player1Controls.Player.RockDancing.triggered)
+        {
+            if (player1Controls.Player.Flair.triggered) { ResetStates(); Flair(); }
+            else if (player1Controls.Player.HipHopDancing.triggered) { ResetStates(); HipHopDancing(); }
+            else if (player1Controls.Player.SillyDancing.triggered) { ResetStates(); SillyDancing(); }
+            else if (player1Controls.Player.BreakDanceEnding1.triggered) { ResetStates(); BreakDanceEnding1(); }
+            else { RockDancing(); }
+
+        }
+        
+        //LOOPING STATES
+
+        else if (isFlair) { Flair(); }
+        else if (isHipHopDancing) { HipHopDancing(); }
+        else if (isSillyDancing) { SillyDancing(); }
+        else if (isBreakDanceEnding1) { BreakDanceEnding1(); }
+
+        else if (isBreakDance1990) { BreakDanceEnding1(); }
         else if (isHeadspin) { Headspin(); }
         else if (isUprock) { Uprock(); }
         else if (isRockDancing) { RockDancing(); }
 
+        else if (isDancing) { Dance(); }
+        else if (isDanceReady) { DanceReady(); }
+        
+        
+
+        if (player1Controls.Player.BreakDance1990.triggered)
+        {
+            //StopBreakDancing();
+            BreakDance1990();
+
+            Toolbox.instance.m_playerManager.boost += boostDanceBonus;
+
+            //isDanceReady = false;
+            //isFallingIdle = false;
+            //isIdle = false;
+            //isWalking = false;
+            //isSprinting = false;
+            //isDancing = false;
+            //isJumping = false;
+            //isHeadspin = false;
+            //isUprock = false;
+            //isRockDancing = false;
+            Debug.Log("BreakDance1990 triggered.");
+
+            if (comboCount == 0) { comboCount = 1; }
+            else if (comboCount == 1) { comboCount = 2; }
+            else if (comboCount == 2) { comboCount = 3; }
+            else if (comboCount == 3) { comboCount = 4; }
+            else if (comboCount == 4) { comboCount = 5; }
+            else if (comboCount == 5) { return; }
+            Debug.Log("Combo count is " + comboCount + ".");
+        }
+        if (player1Controls.Player.Headspin.triggered)
+        {
+            //StopBreakDancing();
+            Headspin();
+
+            Toolbox.instance.m_playerManager.boost += boostDanceBonus;
+
+            //isBreakDance1990 = false;
+            //isDanceReady = false;
+            //isFallingIdle = false;
+            //isIdle = false;
+            //isWalking = false;
+            //isSprinting = false;
+            //isDancing = false;
+            //isJumping = false;
+            //isUprock = false;
+            //isRockDancing = false;
+            Debug.Log("Headspin triggered.");
+
+            if (comboCount == 0) { comboCount = 1; }
+            else if (comboCount == 1) { comboCount = 2; }
+            else if (comboCount == 2) { comboCount = 3; }
+            else if (comboCount == 3) { comboCount = 4; }
+            else if (comboCount == 4) { comboCount = 5; }
+            else if (comboCount == 5) { return; }
+            Debug.Log("Combo count is " + comboCount + ".");
+        }
+        if (player1Controls.Player.Uprock.triggered)
+        {
+            //StopBreakDancing();
+            Uprock();
+
+            Toolbox.instance.m_playerManager.boost += boostDanceBonus;
+
+            //isBreakDance1990 = false;
+            //isDanceReady = false;
+            //isFallingIdle = false;
+            //isIdle = false;
+            //isWalking = false;
+            //isSprinting = false;
+            //isDancing = false;
+            //isJumping = false;
+            //isHeadspin = false;
+            //isRockDancing = false;
+            Debug.Log("UpRock triggered.");
+
+            if (comboCount == 0) { comboCount = 1; }
+            else if (comboCount == 1) { comboCount = 2; }
+            else if (comboCount == 2) { comboCount = 3; }
+            else if (comboCount == 3) { comboCount = 4; }
+            else if (comboCount == 4) { comboCount = 5; }
+            else if (comboCount == 5) { return; }
+            Debug.Log("Combo count is " + comboCount + ".");
+        }
+        if (player1Controls.Player.RockDancing.triggered)
+        {
+            // StopBreakDancing();
+            RockDancing();
+            Toolbox.instance.m_playerManager.boost += boostDanceBonus;
+            //isBreakDance1990 = false;
+            //isDanceReady = false;
+            //isFallingIdle = false;
+            //isIdle = false;
+            //isWalking = false;
+            //isSprinting = false;
+            //isDancing = false;
+            //isJumping = false;
+            //isHeadspin = false;
+            //isUprock = false;
+            Debug.Log("RockDancing triggered.");
+
+            if (comboCount == 0) { comboCount = 1; }
+            else if (comboCount == 1) { comboCount = 2; }
+            else if (comboCount == 2) { comboCount = 3; }
+            else if (comboCount == 3) { comboCount = 4; }
+            else if (comboCount == 4) { return; }
+            Debug.Log("Combo count is " + comboCount + ".");
+        }
+        if (isJumping)
+        {
+            Toolbox.instance.m_playerManager.boost -= boostJumpCost;
+        }
+
+
+        if (m_floorCollider.isStanding) //IF FLOOR COLLIDER OBJECT IS COLLIDING WITH OBJECT TAGGED "Floor"...
+        {
+
+            if (!landingSoundPlayed)
+            {
+                Toolbox.instance.m_audio.landing.PlayOneShot(Toolbox.instance.m_audio.audioClip1);
+                landingSoundPlayed = true;
+            }
+
+            if (isFallingIdle) { StopFallingIdle(); }
+            if (isJumping) { StopJumping(); }
+            Debug.Log("isStanding = true;");
+
+
+            //WALKING
+            if (player1Controls.Player.Move.triggered)
+            {
+                Walk();
+                isWalking = true;
+                isIdle = false;
+                isFallingIdle = false;
+                isJumping = false;
+                isSprinting = false;
+                isDancing = false;
+                Debug.Log("Started Walking.");
+            }
+            //IDLE
+            if (
+                
+            !player1Controls.Player.Move.inProgress && !player1Controls.Player.Look.inProgress && !isJumping && !isFallingIdle && !isDancing && !isSprinting
+             && !player1Controls.Player.BreakDance1990.inProgress && !player1Controls.Player.Headspin.inProgress && !player1Controls.Player.Uprock.inProgress
+             && !player1Controls.Player.RockDancing.inProgress && !player1Controls.Player.Flair.inProgress && !player1Controls.Player.HipHopDancing.inProgress
+             && !player1Controls.Player.SillyDancing.inProgress && !player1Controls.Player.BreakDanceEnding1.inProgress && !isFlair && !isHipHopDancing && !isSillyDancing
+             && !isBreakDanceEnding1)
+            {
+                ResetStates();
+                Idle();
+
+                Debug.Log("Started Idling.");
+
+                //HERE MIGHT BE WHERE ANIMATOR TRANSITION FROM DANCING TO DANCE READY DOESN'T WORK!
+
+            }
+            //JUMPING
+            if (!isFallingIdle && !isJumping && player1Controls.Player.Jump.triggered)
+            {
+                ResetStates();
+                Jump();
+                isJumping = true;
+                isFallingIdle = false;
+                isIdle = false;
+                isWalking = false;
+                isSprinting = false;
+                isDancing = false;
+                Debug.Log("Jumped");
+                landingSoundPlayed = false;
+
+            }
+            //DANCING
+            if (player1Controls.Player.Dance.triggered)
+            {
+                ResetStates();
+                Dance();
+                isDancing = true;
+                isJumping = false;
+                isFallingIdle = false;
+                isIdle = false;
+                isWalking = false;
+                isSprinting = false;
+                Debug.Log("Started Dancing");
+            }
+            //RUNNING
+            if (isWalking && player1Controls.Player.Run.triggered)
+            {
+                ResetStates();
+                Run();
+                isSprinting = true;
+                isDancing = false;
+                isJumping = false;
+                isFallingIdle = false;
+                isIdle = false;
+                isWalking = false;
+                Debug.Log("Started Running");
+            }
+            if (player1Controls.Player.DanceReady.triggered && player1Controls.Player.Dance.inProgress)
+            {
+                
+                DanceReady();
+                isDanceReady = true;
+                isJumping = false;
+                isFallingIdle = false;
+                isIdle = false;
+                isWalking = false;
+                isDancing = false;
+                isRockDancing = false;
+                isBreakDance1990 = false;
+                isHeadspin = false;
+                isUprock = false;
+            }
+
+        }
+        //FALLING IDLE
+        else if (!m_floorCollider.isStanding && !player1Controls.Player.Jump.inProgress)
+        {
+            ResetStates();
+            FallingIdle();
+            isFallingIdle = true;
+            isIdle = false;
+            isWalking = false;
+            isJumping = false;
+            isSprinting = false;
+            isDancing = false;
+            Debug.Log("Started Falling Idle.");
+            landingSoundPlayed = false;
+        }
+
+
     }
+
+
     void StopDancing()
     {
 
@@ -368,7 +775,7 @@ public class GnomeMovement : MonoBehaviour
 
         if (Toolbox.instance.m_playerManager.boost >= boostJumpCost && !isFallingIdle)
         {
-
+           
             isJumping = true;
             Toolbox.instance.m_audio.jumping.Play();
             player1Animator.SetBool("isJumping", true);
@@ -378,141 +785,21 @@ public class GnomeMovement : MonoBehaviour
 
             transform.Translate(jumpHeight.y * jumpSpeed * Time.deltaTime * Vector3.up); //Move player transform up when Jump called.
         }
-
     }
-    void StopJumping()
+    //Need to change this to subtract boost only once at beginning of jump, right now works for duration of button press I think.
+
+
+
+    void OnEnable()
     {
-        player1Animator.SetBool("isJumping", false);
-        isJumping = false;
+        player1Controls.Player.Enable();
+
     }
-    //UPDATE
-    void Update()
-        {
-
-            HandleMovement();
-            HandleRotation();
-
-            if (isJumping)
-            {
-                Toolbox.instance.m_playerManager.boost -= boostJumpCost;
-            }
-
-
-            if (m_floorCollider.isStanding) //IF FLOOR COLLIDER OBJECT IS COLLIDING WITH OBJECT TAGGED "Floor"...
-            {
-
-                if (!landingSoundPlayed)
-                {
-                    Toolbox.instance.m_audio.landing.PlayOneShot(Toolbox.instance.m_audio.audioClip1);
-                    landingSoundPlayed = true;
-                }
-
-                if (isFallingIdle) { StopFallingIdle(); }
-                if (isJumping) { StopJumping(); }
-                Debug.Log("isStanding = true;");
-
-
-                //WALKING
-                if (player1Controls.Player.Move.triggered)
-                {
-                    Walk();
-                    isWalking = true;
-                    isIdle = false;
-                    isFallingIdle = false;
-                    isJumping = false;
-                    isSprinting = false;
-                    isDancing = false;
-                    Debug.Log("Started Walking.");
-                }
-                //IDLE
-                if (!player1Controls.Player.Move.inProgress && !player1Controls.Player.Look.inProgress && !isJumping && !isFallingIdle && !isDancing && !isSprinting)
-                {
-                    Idle();
-                    isIdle = true;
-                    isWalking = false;
-                    isFallingIdle = false;
-                    isJumping = false;
-                    isSprinting = false;
-                    isDancing = false;
-                    Debug.Log("Started Idling.");
-                }
-                //JUMPING
-                if (!isFallingIdle && !isJumping && player1Controls.Player.Jump.triggered)
-                {
-                    Jump();
-                    isJumping = true;
-                    isFallingIdle = false;
-                    isIdle = false;
-                    isWalking = false;
-                    isSprinting = false;
-                    isDancing = false;
-                    Debug.Log("Jumped");
-                    landingSoundPlayed = false;
-
-                }
-                //DANCING
-                if (player1Controls.Player.Dance.triggered)
-                {
-                    Dance();
-                    isDancing = true;
-                    isJumping = false;
-                    isFallingIdle = false;
-                    isIdle = false;
-                    isWalking = false;
-                    isSprinting = false;
-                    Debug.Log("Started Dancing");
-                }
-                //RUNNING
-                if (isWalking && player1Controls.Player.Run.triggered)
-                {
-                    Run();
-                    isSprinting = true;
-                    isDancing = false;
-                    isJumping = false;
-                    isFallingIdle = false;
-                    isIdle = false;
-                    isWalking = false;
-                    Debug.Log("Started Running");
-                }
-                //if (player1Controls.Player.Dance.inProgress)
-                //{
-                //    DanceReady();
-                //    isDanceReady = true;
-                //    isJumping = false;
-                //    isFallingIdle = false;
-                //    isIdle = false;
-                //    isWalking = false;
-                //    isDancing = false;
-                //    isRockDancing = false;
-                //    isBreakDance1990 = false;
-                //    isHeadspin = false;
-                //    isUprock = false;
-                //}
-
-            }
-            //FALLING IDLE
-            else if (!m_floorCollider.isStanding && !player1Controls.Player.Jump.inProgress)
-            {
-                FallingIdle();
-                isFallingIdle = true;
-                isIdle = false;
-                isWalking = false;
-                isJumping = false;
-                isSprinting = false;
-                isDancing = false;
-                Debug.Log("Started Falling Idle.");
-                landingSoundPlayed = false;
-            }
-        }
-        void OnEnable()
-        {
-            player1Controls.Player.Enable();
-
-        }
-        void OnDisable()
-        {
-            player1Controls.Player.Disable();
-        }
+    void OnDisable()
+    {
+        player1Controls.Player.Disable();
     }
+}
+    
 
 

@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -19,29 +20,38 @@ public class UI_Manager : MonoBehaviour
 
     [SerializeField] GameObject gnome;
 
-    //[SerializeField] string highScore1; //For adding more HighScores later.
+    public SpriteRenderer plus1;
+    public SpriteRenderer plus2;
+    public SpriteRenderer plus3;
+    public SpriteRenderer plus4;
+    public SpriteRenderer plus5;
 
-   public SGInput input;
+    public GameObject numbersParent;
+
+    public SpriteRenderer healthUIText;
+    public SpriteRenderer pointsUIText;
+    public SpriteRenderer timeUIText;
+
+    public SGInput input;
 
     private void Awake()
     {
-      Time.timeScale = 0;
-        previousHighScoreText.text = PlayerPrefs.GetFloat("PreviousHighScore").ToString("f0"); 
       input = new SGInput();
 
-    if (!startPanel.activeInHierarchy)
-    {
-            startPanel.SetActive(true);
-            gnome.SetActive(false);
-    }
-    if (gameOverPanel.activeInHierarchy)
-        {
-            gameOverPanel.SetActive(false);
-            startPanel.SetActive(true);
 
-        }
+        startPanel.SetActive(true); 
+         gnome.SetActive(false);
 
-        input.UI.Click.performed += ctx => StartButton();
+        //plus1.gameObject.SetActive(false);
+        //plus2.gameObject.SetActive(false);
+        //plus3.gameObject.SetActive(false);
+        //plus4.gameObject.SetActive(false);
+        //plus5.gameObject.SetActive(false);
+        //healthUIText.gameObject.SetActive(false);
+        //pointsUIText.gameObject.SetActive(false);
+        //timeUIText.gameObject.SetActive(false);
+    
+    input.UI.Click.performed += ctx => StartButton();
 
     }
     void OnEnable()
@@ -55,41 +65,35 @@ public class UI_Manager : MonoBehaviour
 
     public void Update()
     {
+        
         scoreText.text = Toolbox.instance.m_playerManager.score.ToString();
-      
-            if (Input.GetKeyDown(KeyCode.Escape) )
+
+        if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (Time.timeScale == 0)
                 {
+                   startPanel.SetActive(false);
+                   gnome.SetActive(true);
                     Time.timeScale = 1;
-                    startPanel.SetActive(false);
-                    gnome.SetActive(true);
-                }
-                else if (Time.timeScale == 1)
-                {
-                    Time.timeScale = 0;
-                    startPanel.SetActive(true);
-                    gnome.SetActive(false);
-                }
-            }
 
-            if (input.UI.Cancel.triggered)
-        {
-            if (gameOverPanel.gameObject.activeInHierarchy)
-            {
-               
-                RestartButton();
-                
             }
-            if (startPanel.activeInHierarchy)
-            {
-                if (!gameOverPanel.activeInHierarchy)
+                else if (Time.timeScale == 1) 
                 {
-                    Quit();
-                }
-                else { return; }
-                
+                   
+                   startPanel.SetActive(true);
+                   gnome.SetActive(false);
+                   Time.timeScale = 0;
             }
+            }
+        
+
+        if (input.UI.Cancel.triggered)
+            {
+            if (gameOverPanel.activeInHierarchy)
+                {
+                    RestartButton();
+                }
+         
         }
     }
    
@@ -101,31 +105,40 @@ public class UI_Manager : MonoBehaviour
     }
     public void StartButton()
     {
+
         Debug.Log("StartButton used.");
         if (Time.timeScale == 0)
         {
-            Time.timeScale = 1;
+           
             startPanel.SetActive(false);
             gnome.SetActive(true);
+            Time.timeScale = 1;
+
         }
-       else if (Time.timeScale == 1)
+        else if (Time.timeScale == 1)
         {
-            Time.timeScale = 0;
+           
             startPanel.SetActive(true);
             gnome.SetActive(false);
+            Time.timeScale = 0;
         }
+      
         
     }
     public void ResetHighScore()
     {
         PlayerPrefs.DeleteKey("HighScore");
+        PlayerPrefs.DeleteKey("PreviousHighScore");
     }
     public void RestartButton()
     {
         Toolbox.instance.m_playerManager.score = 0;
         gameOverPanel.SetActive(false);
-        startPanel.SetActive(true);
+        
         SceneManager.LoadScene(0);
         
     }
-}
+    
+
+    }
+

@@ -13,7 +13,7 @@ public class Asteroid : MonoBehaviour
     [System.Obsolete]
     private void Update()
     {
-        transform.RotateAround(earth.transform.position, rotationCenter.transform.position * m_gnomeMovement.fallSpeed * m_gnomeMovement.gravity * Time.deltaTime, rotationIncrements);
+        transform.RotateAround(earth.transform.position, m_gnomeMovement.fallSpeed * m_gnomeMovement.gravity * Time.deltaTime * rotationCenter.transform.position, rotationIncrements);
         transform.Translate(asteroidFallSpeed * m_gnomeMovement.fallSpeed * m_gnomeMovement.gravity * Time.deltaTime * Vector3.down);
     }
 }
