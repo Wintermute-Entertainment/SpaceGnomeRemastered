@@ -74,10 +74,10 @@ public class FloorCollider : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        Debug.Log("Updated Floor Collider Y velocity from " + floorColliderRB.velocity.y + " to zero in Fixed Update.");
-        floorColliderRB.velocity = Vector3.zero; 
-    }
+    //private void FixedUpdate()
+    //{
+    //    Debug.Log("Updated Floor Collider Y velocity from " + floorColliderRB.velocity.y + " to zero in Fixed Update.");
+    //    floorColliderRB.velocity = Vector3.zero; 
+    //}
 
 }

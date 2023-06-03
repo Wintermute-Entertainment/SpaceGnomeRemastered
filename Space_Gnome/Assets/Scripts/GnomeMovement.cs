@@ -625,7 +625,7 @@ public class GnomeMovement : MonoBehaviour
             if (
                 
             !player1Controls.Player.Move.inProgress && !player1Controls.Player.Look.inProgress && !isJumping && !isFallingIdle && !isDancing && !isSprinting
-             && !player1Controls.Player.BreakDance1990.inProgress && !player1Controls.Player.Headspin.inProgress && !player1Controls.Player.Uprock.inProgress
+             && !isDanceReady && !player1Controls.Player.BreakDance1990.inProgress && !player1Controls.Player.Headspin.inProgress && !player1Controls.Player.Uprock.inProgress
              && !player1Controls.Player.RockDancing.inProgress && !player1Controls.Player.Flair.inProgress && !player1Controls.Player.HipHopDancing.inProgress
              && !player1Controls.Player.SillyDancing.inProgress && !player1Controls.Player.BreakDanceEnding1.inProgress && !isFlair && !isHipHopDancing && !isSillyDancing
              && !isBreakDanceEnding1)
@@ -635,7 +635,6 @@ public class GnomeMovement : MonoBehaviour
 
                 Debug.Log("Started Idling.");
 
-                //HERE MIGHT BE WHERE ANIMATOR TRANSITION FROM DANCING TO DANCE READY DOESN'T WORK!
 
             }
             //JUMPING
