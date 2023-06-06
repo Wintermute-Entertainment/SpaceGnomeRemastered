@@ -67,17 +67,15 @@ public class FloorCollider : MonoBehaviour
         {
             transform.Translate(Vector3.up, Space.Self);
             Debug.Log("Updated Floor Collider Y position.");
+            Toolbox.instance.m_gnomeMovement.playerRB.velocity = Vector3.zero;
+            Debug.Log("Set velocity to zero.");
         }
 
 
-
+        
 
     }
 
-    //private void FixedUpdate()
-    //{
-    //    Debug.Log("Updated Floor Collider Y velocity from " + floorColliderRB.velocity.y + " to zero in Fixed Update.");
-    //    floorColliderRB.velocity = Vector3.zero; 
-    //}
+    
 
 }

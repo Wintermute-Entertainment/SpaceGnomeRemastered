@@ -206,8 +206,6 @@ public class Coins : MonoBehaviour
                 });
             }
 
-     
-
         totalPointsCoinsCollected += 1;     //Add 1 to the total points coins collected, set the point coin boolean to true, and update the points UI with the current SCORE (NOTE THIS NEEDS WORK!!!)..
         Debug.Log("Got a point.");
         gotAPoint = true;
@@ -300,7 +298,7 @@ public class Coins : MonoBehaviour
                     hP += danceBonus;
 
 
-                    Debug.Log("Gained " + hP + " HP. Dance bonus currently " + danceBonus + ".");
+                    Debug.Log( "Gained " + danceBonus + " HP. HP is currently " + hP + ". Dance bonus currently " + danceBonus + ".");
                 }
 
                 else
@@ -373,14 +371,14 @@ public class Coins : MonoBehaviour
                     break;
             }
 
-            if (plusText != null)
-            {
-                plusText.gameObject.SetActive(true);
-                plusText.DOFade(.5f, 1f).SetDelay(1.5f).OnComplete(() =>
-                {
-                    plusText.gameObject.SetActive(false);
-                });
-            }
+            //if (plusText != null)
+            //{
+            //    plusText.gameObject.SetActive(true);
+            //    plusText.DOFade(.5f, 1f).SetDelay(1.5f).OnComplete(() =>
+            //    {
+            //        plusText.gameObject.SetActive(false);
+            //    });
+            //}
             if (coinTypeTextSprite != null)
                 {
                     coinTypeTextSprite.gameObject.SetActive(true);

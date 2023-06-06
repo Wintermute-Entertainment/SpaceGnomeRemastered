@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class UI_Manager : MonoBehaviour
     public SpriteRenderer timeUIText;
 
     public SGInput input;
+
+    public int round;
+    public float timeRoundStarted;
 
     private void Awake()
     {
@@ -133,8 +137,10 @@ public class UI_Manager : MonoBehaviour
     public void RestartButton()
     {
         Toolbox.instance.m_playerManager.score = 0;
-        gameOverPanel.SetActive(false);
+       
         
+        gameOverPanel.SetActive(false);
+        timeRoundStarted = Time.time;
         SceneManager.LoadScene(0);
         
     }

@@ -55,8 +55,6 @@ public class PlayerManager : MonoBehaviour
             Toolbox.instance.m_uIManager.finalScoreText.text = score.ToString("f0");
         }
 
-        
-          
 
         Toolbox.instance.m_uIManager.gameOverPanel.SetActive(true);
         Toolbox.instance.m_uIManager.highScoreText.text = PlayerPrefs.GetFloat("HighScore").ToString("f0");
@@ -78,6 +76,6 @@ public class PlayerManager : MonoBehaviour
         }
         if (boost<= 0) { boost= 0; }
 
-        score = (points + (hP / 2)) * Time.time;
+        score = (points + (hP / 2)) * (Toolbox.instance.m_uIManager.timeRoundStarted - Time.time); ///timeGamestarted - timeRound started.
     }
 }

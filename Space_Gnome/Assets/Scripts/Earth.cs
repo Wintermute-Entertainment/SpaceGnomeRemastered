@@ -24,6 +24,7 @@ public class Earth : MonoBehaviour
         {
             transform.Translate(m_gnomeMovement.fallSpeed * m_gnomeMovement.gravity * Time.deltaTime * Vector3.up);
         }
+      //  transform.Rotate(360, 360, 360);
     }
     
     private void OnCollisionEnter(Collision collision)

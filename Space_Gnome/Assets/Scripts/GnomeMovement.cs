@@ -51,7 +51,7 @@ public class GnomeMovement : MonoBehaviour
     //BASIC VARIABLES:
 
     [SerializeField] GameObject player1GO;
-    [SerializeField] Rigidbody playerRB;
+    public Rigidbody playerRB;
 
     public float defaultGravity = -9.81f;
     public float gravity = -9.81f;
